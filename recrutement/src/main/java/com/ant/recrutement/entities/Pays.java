@@ -1,11 +1,10 @@
 package com.ant.recrutement.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -14,8 +13,9 @@ public class Pays {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String libelle;
-
-
+@JsonIgnore
+    @OneToMany(mappedBy = "pays")
+    private List<Ville> villes;
 
 
 }

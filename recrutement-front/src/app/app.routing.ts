@@ -1,79 +1,56 @@
-import {Route} from '@angular/router';
-import {LayoutComponent} from 'app/layout/layout.component';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+// Import Containers
+import { DefaultLayoutComponent } from './containers';
 
 
-// @formatter:off
-/* eslint-disable max-len */
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-export const appRoutes: Route[] = [
+import { LoginComponent } from './views/auth/login/login.component';
+import { RegisterComponent } from './views/auth/register/register.component';
+import {SpecialiteComponent} from './views/settings/specialite/specialite.component';
+import {TypePosteComponent} from './views/settings/type-poste/type-poste.component';
+import {PaysComponent} from './views/settings/pays/pays.component';
+import {VillesComponent} from './views/settings/villes/villes.component';
+import {LangueComponent} from './views/settings/langue/langue.component';
 
-    // Redirect empty path to '/example'
-    {path: '', pathMatch: 'full', redirectTo: 'example'},
-
-    // Redirect signed in user to the '/example'
-    //
-    // After the user signs in, the sign in page will redirect the user to the 'signed-in-redirect'
-    // path. Below is another redirection for that path to redirect the user to the desired
-    // location. This is a small convenience to keep all main routes together here on this file.
-
-    // Auth routes for guests
-    {
-        path: '',
-        component: LayoutComponent,
-        data: {
-            layout: 'empty'
-        },
-        children: [
-            {
-                path: 'sign-in',
-                loadChildren: () => import('app/modules/auth/sign-in/sign-in.module').then(m => m.AuthSignInModule)
-            },
-            {
-                path: 'sign-up',
-                loadChildren: () => import('app/modules/auth/sign-up/sign-up.module').then(m => m.AuthSignUpModule)
-            }
-        ]
-    },
-
-    // Auth routes for authenticated users
-    {
-        path: '',
-        component: LayoutComponent,
-        data: {
-            layout: 'empty'
-        },
-        children: [
-            {
-                path: 'sign-out',
-                loadChildren: () => import('app/modules/auth/sign-out/sign-out.module').then(m => m.AuthSignOutModule)
-            }
-        ]
-    },
-
-    // Landing routes
-    {
-        path: '',
-        component: LayoutComponent,
-        data: {
-            layout: 'empty'
-        },
-        children: [
-            {
-                path: 'home',
-                loadChildren: () => import('app/modules/landing/home/home.module').then(m => m.LandingHomeModule)
-            },
-        ]
-    },
-
-    // Admin routes
-    {
-        path: '',
-        component: LayoutComponent,
-        children: [
-            {
-                path: 'example',
-                loadChildren: () => import('app/modules/admin/example/example.module').then(m => m.ExampleModule)
-            },
-        ]
+export const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full',
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    data: {
+      title: 'Login Page'
     }
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    data: {
+      title: 'Register Page'
+    }
+  },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Home'
+    },
+    children: [
+      {path: 'settings/specialite', component: SpecialiteComponent},
+      {path: 'settings/type-poste', component: TypePosteComponent},
+      {path: 'settings/pays', component: PaysComponent},
+      {path: 'settings/ville/:id', component: VillesComponent},
+      {path: 'settings/langue', component: LangueComponent},
+    ]
+  }
 ];
+
+@NgModule({
+  imports: [ RouterModule.forRoot(routes) ],
+  exports: [ RouterModule ]
+})
+export class AppRoutingModule {}

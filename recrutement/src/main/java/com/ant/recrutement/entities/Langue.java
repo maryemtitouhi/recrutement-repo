@@ -18,4 +18,8 @@ public class Langue {
     @JsonIgnore
     @ManyToMany(mappedBy = "langues")
     private List<Offre> offres;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "langue")
+    private List<Niveau> niveaux;
 }

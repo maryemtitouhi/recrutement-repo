@@ -1,0 +1,72 @@
+<div class="card">
+  <div class="card-header">
+
+
+    <strong>Spécialité</strong>
+
+    <div class="card-header-actions">
+      <button class="btn btn-success" (click)="clickAdd()">
+        <i class="fa fa-plus"></i>
+        Nouvelle spécialité
+      </button>
+    </div>
+  </div>
+
+  <div class="card-body">
+
+
+    <p-table [value]="specialities">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Libellé</th>
+          <th width="12%">Action</th>
+
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-spec>
+        <tr>
+          <td>{{spec.libelle}}</td>
+          <td>
+
+            <button pButton pRipple type="button" icon="pi pi-trash"
+                    pTooltip="Supprimer"
+                    tooltipPosition="top"
+                    class="p-button-rounded p-button-danger p-button-outlined"
+                    (click)="delete($event, spec.id)"></button>
+
+            <button pButton pRipple type="button" icon="pi pi-pencil"
+                    pTooltip="Editer"
+                    tooltipPosition="top"
+                    (click)="clickEdit(spec)"
+                    class="p-button-rounded p-button-warning p-button-outlined"></button>
+
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+
+  </div>
+
+
+</div>
+
+
+<p-dialog header="Spécialité" [(visible)]="display" [breakpoints]="{'960px': '75vw'}" [style]="{width: '50vw'}"
+          [baseZIndex]="10000"
+          [modal]="true" [draggable]="false" [resizable]="false">
+
+  <div class="form-group">
+    <label>Libellé</label>
+    <input class="form-control" [(ngModel)]="specialite.libelle" #spec="ngModel" required>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <button pButton pRipple (click)="display=false" label="Annuler" class="p-button-outlined p-button-danger"></button>
+    <button *ngIf="!specialite.id" pButton label="Ajouter" class="p-button-info" [disabled]="spec.invalid"
+            (click)="add()"></button>
+
+    <button *ngIf="specialite.id" pButton label="Modifier" class="p-button-info" [disabled]="spec.invalid"
+            (click)="update()"></button>
+  </ng-template>
+</p-dialog>

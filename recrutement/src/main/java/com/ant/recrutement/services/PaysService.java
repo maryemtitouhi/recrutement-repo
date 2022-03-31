@@ -1,8 +1,6 @@
 package com.ant.recrutement.services;
 import com.ant.recrutement.entities.Pays;
-import com.ant.recrutement.entities.Specialite;
-import com.ant.recrutement.repositories.PayRepository;
-import com.ant.recrutement.repositories.SpecialiteRepository;
+import com.ant.recrutement.repositories.PaysRepository;
 import com.ant.recrutement.responses.MessageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,30 +10,30 @@ import java.util.List;
 @Service
 public class PaysService {
     @Autowired
-    private PayRepository payRepository;
+    private PaysRepository paysRepository;
 
     public MessageResponse save(Pays pays) {
-        boolean exist = payRepository.existsByLibelle(pays.getLibelle());
+        boolean exist = paysRepository.existsByLibelle(pays.getLibelle());
 
         if (exist) {
 
             return new MessageResponse(false, "Attention", "Pays existe déjà");
         }
 
-        payRepository.save(pays);
+        paysRepository.save(pays);
 
         return new MessageResponse(true, "Succès", "Opération effectuée");
     }
 
     public MessageResponse update(Pays pays) {
-        boolean exist = payRepository.existsByLibelle(pays.getLibelle());
+        boolean exist = paysRepository.existsByLibelle(pays.getLibelle());
 
         if (exist) {
 
             return new MessageResponse(false, "Attention", "Pays existe déjà");
         }
 
-        payRepository.save(pays);
+        paysRepository.save(pays);
 
         return new MessageResponse(true, "Succès", "Opération effectuée");
     }
@@ -43,19 +41,19 @@ public class PaysService {
 
     public MessageResponse delete(Integer id) {
 
-        boolean exist = payRepository.existsByIdAndOffresIsNotNull(id);
+        boolean exist = paysRepository.existsByIdAndVillesIsNotNull(id);
 
         if (exist) {
 
-            return new MessageResponse(false, "Attention", "Pays affectée ");
+            return new MessageResponse(false, "Attention", "Pays affectée a une ou plusieurs villes");
         }
-        payRepository.deleteById(id);
+        paysRepository.deleteById(id);
 
         return new MessageResponse(true, "Succès", "Opération effectuée");
     }
 
     public List<Pays> findAll() {
-        return payRepository.findAll();
+        return paysRepository.findAll();
     }
 
 }

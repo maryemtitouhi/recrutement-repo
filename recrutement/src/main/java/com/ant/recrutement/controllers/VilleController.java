@@ -8,13 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin("*")
 @RestController
-@RequestMapping("/Ville")
+@RequestMapping("/ville")
 
 public class VilleController {
     @Autowired
     private VilleService villeService;
+    @GetMapping("/pays/{id}")
+    public List<Ville> findByPays(@PathVariable Integer id) {
+        return villeService.findByPays(id);
+    }
 
     @GetMapping
     public List<Ville> findAll() {
