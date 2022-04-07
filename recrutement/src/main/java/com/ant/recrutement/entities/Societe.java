@@ -10,7 +10,7 @@ public class Societe  extends User{
 
 
     private String raisonSocial;
-    private Integer matriculeFiscal;
+    private String matriculeFiscal;
     private String registreCommerce;
     private String taille;
     private String siteWeb;

@@ -10,7 +10,7 @@ import java.util.Date;
 public class Candidat extends User {
     private String nom;
     private String prenom;
-    private Integer niveauEtude;
+
     private Date dateNaissance;
 
 

@@ -5,44 +5,331 @@
         <div class="col-md-6 mx-auto">
           <div class="card mx-4">
             <div class="card-body p-4">
-              <form>
-                <h1>Register</h1>
-                <p class="text-muted">Create your account</p>
+              <form *ngIf="typeRegister === 'candidat'" #f1="ngForm" (ngSubmit)="f1. form. valid && registerCandidat()">
+                <h1>Inscription</h1>
+                <p class="text-muted">Créer votre compte</p>
+
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="icon-user"></i></span>
                   </div>
-                  <input type="text" class="form-control" placeholder="Username" autocomplete="username" required>
+                  <input type="text"
+                         class="form-control {{f1.submitted && nom.invalid?'is-invalid' : '' }}"
+                         placeholder="Nom" [(ngModel)]="candidat.nom" name="nom" #nom="ngModel" required>
+                  <div class="invalid-feedback"> Nom est obligatoire.</div>
                 </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="icon-user"></i></span>
+                  </div>
+                  <input type="text" class="form-control  {{f1.submitted && prenom.invalid?'is-invalid' : '' }}"
+                         placeholder="Prénom" [(ngModel)]="candidat.prenom" #prenom="ngModel" name="prenom" required>
+                  <div class="invalid-feedback"> Prénom est obligatoire.</div>
+                </div>
+
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="icon-calendar"></i></span>
+                  </div>
+                  <input type="date"
+                         class="form-control {{f1.submitted && dateNaissance.invalid?'is-invalid' : '' }}"
+                         [(ngModel)]="candidat.dateNaissance" name="dateNaissance"
+                         #dateNaissance="ngModel" required>
+                  <div class="invalid-feedback"> Date de naissance obligatoire.</div>
+                </div>
+
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="icon-phone"></i></span>
+                  </div>
+                  <input type="text"
+                         pKeyFilter="pint"
+                         class="form-control {{f1.submitted && telephone.invalid?'is-invalid' : '' }}"
+                         placeholder="Téléphone"
+                         minlength="8"
+                         maxlength="8"
+                         [(ngModel)]="candidat.telephone" name="telephone"
+                         #telephone="ngModel" required>
+                  <div class="invalid-feedback" *ngIf="f1.submitted && telephone.invalid">
+                    <div *ngIf="telephone?.errors['required']">
+                      Téléphone est obligatoire.
+                    </div>
+                    <div *ngIf="telephone?.errors['minlength']">
+                      Téléphone doit contenir 8 chiffres.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="icon-flag"></i></span>
+                  </div>
+                  <select
+                    class="form-control {{f1.submitted && pays.invalid?'is-invalid' : '' }}"
+                    [(ngModel)]="country" (ngModelChange)="getVillesByPays(country.id)" name="country" #pays="ngModel"
+                    required>
+                    <option [ngValue]="count" *ngFor="let count of countries ">{{count.libelle}}</option>
+                  </select>
+                  <div class="invalid-feedback"> Pays est obligatoire.</div>
+                </div>
+
+                <div class="input-group mb-3" *ngIf="country">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="cil-building"></i></span>
+                  </div>
+                  <select
+                    class="form-control {{f1.submitted && ville.invalid?'is-invalid' : '' }}"
+                    [(ngModel)]="candidat.ville" name="ville" #ville="ngModel" required>
+                    <option [ngValue]="vil" *ngFor="let vil of villes ">{{vil.libelle}}</option>
+                  </select>
+                  <div class="invalid-feedback"> Ville est obligatoire.</div>
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="icon-location-pin"></i></span>
+                  </div>
+                  <input type="text" class="form-control {{f1.submitted && adresse.invalid?'is-invalid' : '' }}"
+                         placeholder="Adresse" [(ngModel)]="candidat.addresse"
+                         #adresse="ngModel"
+                         name="addresse" required>
+                  <div class="invalid-feedback"> Adresse est obligatoire.</div>
+                </div>
+
+
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text">@</span>
                   </div>
-                  <input type="text" class="form-control" placeholder="Email" autocomplete="email" required>
+                  <input type="text"
+                         class="form-control  {{f1.submitted && mail.invalid?'is-invalid' : '' }}"
+                         placeholder="Email" name="email"
+                         [(ngModel)]="candidat.email" #mail="ngModel"
+                         required email>
+
+                  <div class="invalid-feedback" *ngIf="f1.submitted && mail.invalid">
+                    <div *ngIf="mail?.errors['required']">
+                      Email est obligatoire.
+                    </div>
+                    <div *ngIf="mail?.errors['email']">
+                      Email invalid.
+                    </div>
+                  </div>
                 </div>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="icon-lock"></i></span>
                   </div>
-                  <input type="password" class="form-control" placeholder="Password" autocomplete="new-password" required>
+                  <input type="password" class="form-control  {{f1.submitted && password.invalid?'is-invalid' : '' }}"
+                         placeholder="Mot de passe"
+                         name="password" #password="ngModel" [(ngModel)]="candidat.password"
+
+                         required>
+                  <div class="invalid-feedback"> Mot de passe est obligatoire.</div>
                 </div>
                 <div class="input-group mb-4">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="icon-lock"></i></span>
                   </div>
-                  <input type="password" class="form-control" placeholder="Repeat password" autocomplete="new-password" required>
+
+                  <input type="password" class="form-control  {{f1.submitted && password2.invalid?'is-invalid' : '' }}"
+                         placeholder="Confirmer Mot de passe"
+                         name="password2" #password2="ngModel" [(ngModel)]="confirmPassword"
+                         [pattern]="candidat.password"
+                         required>
+                  <div class="invalid-feedback" *ngIf="f1.submitted && password2.invalid">
+                    <div *ngIf="password2?.errors['required']">
+                      Confirmer mot de passe est obligatoire.
+                    </div>
+                    <div *ngIf="password2?.errors['pattern']">
+                      Les mot de passe ne sont pas identiques.
+                    </div>
+                  </div>
                 </div>
-                <button type="button" class="btn btn-block btn-success">Create Account</button>
+                <button type="submit" class="btn btn-block btn-success">S'inscrir</button>
               </form>
+
+
+              <form *ngIf="typeRegister === 'societe'" #f1="ngForm" (ngSubmit)="f1. form. valid && registerSociete()">
+                <h1>Inscription</h1>
+                <p class="text-muted">Créer votre compte</p>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="cil-bank"></i></span>
+                  </div>
+                  <input type="text"
+                         class="form-control {{f1.submitted && raisonSocial.invalid?'is-invalid' : '' }}"
+                         placeholder="Raison Sociale" [(ngModel)]="societe.raisonSocial"
+                         name="raisonSocial" #raisonSocial="ngModel" required>
+                  <div class="invalid-feedback"> Raison Sociale est obligatoire.</div>
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="icon-folder"></i></span>
+                  </div>
+                  <input type="text" class="form-control {{f1.submitted && matriculeFiscal.invalid?'is-invalid' : '' }}"
+                         placeholder="Matricule fiscale" [(ngModel)]="societe.matriculeFiscal"
+                         #matriculeFiscal="ngModel"
+                         name="matriculeFiscal" required>
+                  <div class="invalid-feedback"> Matricule fiscale est obligatoire.</div>
+                </div>
+
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="icon-notebook"></i></span>
+                  </div>
+                  <input type="text"
+                         placeholder="Registre de commerce"
+                         class="form-control {{f1.submitted && registreCommerce.invalid?'is-invalid' : '' }}"
+                         [(ngModel)]="societe.registreCommerce" name="registreCommerce"
+                         #registreCommerce="ngModel" required>
+                  <div class="invalid-feedback"> Registre de commerce obligatoire.</div>
+                </div>
+
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="cil-4k"></i></span>
+                  </div>
+                  <input type="text"
+                         placeholder="Taille Société"
+                         class="form-control "
+                         [(ngModel)]="societe.taille" name="taille">
+                </div>
+
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="icon-paper-clip"></i></span>
+                  </div>
+                  <input type="text"
+                         placeholder="Site web"
+                         class="form-control "
+                         [(ngModel)]="societe.siteWeb" name="siteWeb">
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="icon-phone"></i></span>
+                  </div>
+                  <input type="text"
+                         pKeyFilter="pint"
+                         class="form-control {{f1.submitted && telephone.invalid?'is-invalid' : '' }}"
+                         placeholder="Téléphone"
+                         minlength="8"
+                         maxlength="8"
+                         [(ngModel)]="societe.telephone" name="telephone"
+                         #telephone="ngModel" required>
+                  <div class="invalid-feedback" *ngIf="f1.submitted && telephone.invalid">
+                    <div *ngIf="telephone?.errors['required']">
+                      Téléphone est obligatoire.
+                    </div>
+                    <div *ngIf="telephone?.errors['minlength']">
+                      Téléphone doit contenir 8 chiffres.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="icon-flag"></i></span>
+                  </div>
+                  <select
+                    class="form-control {{f1.submitted && pays.invalid?'is-invalid' : '' }}"
+                    [(ngModel)]="country" (ngModelChange)="getVillesByPays(country.id)" name="country" #pays="ngModel"
+                    required>
+                    <option [ngValue]="count" *ngFor="let count of countries ">{{count.libelle}}</option>
+                  </select>
+                  <div class="invalid-feedback"> Pays est obligatoire.</div>
+                </div>
+
+                <div class="input-group mb-3" *ngIf="country">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="cil-building"></i></span>
+                  </div>
+                  <select
+                    class="form-control {{f1.submitted && ville.invalid?'is-invalid' : '' }}"
+                    [(ngModel)]="societe.ville" name="ville" #ville="ngModel" required>
+                    <option [ngValue]="vil" *ngFor="let vil of villes ">{{vil.libelle}}</option>
+                  </select>
+                  <div class="invalid-feedback"> Ville est obligatoire.</div>
+                </div>
+
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="icon-location-pin"></i></span>
+                  </div>
+                  <input type="text" class="form-control {{f1.submitted && adresse.invalid?'is-invalid' : '' }}"
+                         placeholder="Adresse" [(ngModel)]="societe.addresse"
+                         #adresse="ngModel"
+                         name="addresse" required>
+                  <div class="invalid-feedback"> Adresse est obligatoire.</div>
+                </div>
+
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">@</span>
+                  </div>
+                  <input type="text"
+                         class="form-control  {{f1.submitted && mail.invalid?'is-invalid' : '' }}"
+                         placeholder="Email" name="email"
+                         [(ngModel)]="societe.email" #mail="ngModel"
+                         required email>
+
+                  <div class="invalid-feedback" *ngIf="f1.submitted && mail.invalid">
+                    <div *ngIf="mail?.errors['required']">
+                      Email est obligatoire.
+                    </div>
+                    <div *ngIf="mail?.errors['email']">
+                      Email invalid.
+                    </div>
+                  </div>
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="icon-lock"></i></span>
+                  </div>
+                  <input type="password" class="form-control  {{f1.submitted && password.invalid?'is-invalid' : '' }}"
+                         placeholder="Mot de passe"
+                         name="password" #password="ngModel" [(ngModel)]="societe.password"
+
+                         required>
+                  <div class="invalid-feedback"> Mot de passe est obligatoire.</div>
+                </div>
+                <div class="input-group mb-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="icon-lock"></i></span>
+                  </div>
+
+                  <input type="password" class="form-control  {{f1.submitted && password2.invalid?'is-invalid' : '' }}"
+                         placeholder="Confirmer Mot de passe"
+                         name="password2" #password2="ngModel" [(ngModel)]="confirmPassword"
+                         [pattern]="societe.password"
+                         required>
+                  <div class="invalid-feedback" *ngIf="f1.submitted && password2.invalid">
+                    <div *ngIf="password2?.errors['required']">
+                      Confirmer mot de passe est obligatoire.
+                    </div>
+                    <div *ngIf="password2?.errors['pattern']">
+                      Les mot de passe ne sont pas identiques.
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-block btn-success">S'inscrir</button>
+              </form>
+
+
             </div>
             <div class="card-footer p-4">
               <div class="row">
-                <div class="col-6">
-                  <button class="btn btn-block btn-facebook" type="button"><span>facebook</span></button>
-                </div>
-                <div class="col-6">
-                  <button class="btn btn-block btn-twitter" type="button"><span>twitter</span></button>
-                </div>
+                <a routerLink="/login">Avez vous déjà compte?</a>
               </div>
             </div>
           </div>

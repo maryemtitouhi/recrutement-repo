@@ -12,6 +12,8 @@ import {TypePosteComponent} from './views/settings/type-poste/type-poste.compone
 import {PaysComponent} from './views/settings/pays/pays.component';
 import {VillesComponent} from './views/settings/villes/villes.component';
 import {LangueComponent} from './views/settings/langue/langue.component';
+import {CandidatComponent} from './views/users/candidat/candidat.component';
+import {SocieteComponent} from './views/users/societe/societe.component';
 
 export const routes: Routes = [
   {
@@ -27,7 +29,7 @@ export const routes: Routes = [
     }
   },
   {
-    path: 'register',
+    path: 'register/:type',
     component: RegisterComponent,
     data: {
       title: 'Register Page'
@@ -45,6 +47,8 @@ export const routes: Routes = [
       {path: 'settings/pays', component: PaysComponent},
       {path: 'settings/ville/:id', component: VillesComponent},
       {path: 'settings/langue', component: LangueComponent},
+      {path: 'user/candidat', component: CandidatComponent},
+      {path: 'user/societe', component: SocieteComponent},
     ]
   }
 ];

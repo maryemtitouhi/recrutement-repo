@@ -14,5 +14,6 @@ public class Cv {
     @PrimaryKeyJoinColumn(name = "id")
     private Candidat candidat;
     private String titre;
+    private String niveauEtude;
     private String anneeExperience;
 }

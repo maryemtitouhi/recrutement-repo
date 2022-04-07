@@ -37,6 +37,8 @@ import { TypePosteComponent } from './views/settings/type-poste/type-poste.compo
 import { PaysComponent } from './views/settings/pays/pays.component';
 import { VillesComponent } from './views/settings/villes/villes.component';
 import { LangueComponent } from './views/settings/langue/langue.component';
+import { CandidatComponent } from './views/users/candidat/candidat.component';
+import { SocieteComponent } from './views/users/societe/societe.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -80,7 +82,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     TypePosteComponent,
     PaysComponent,
     VillesComponent,
-    LangueComponent
+    LangueComponent,
+    CandidatComponent,
+    SocieteComponent
   ],
   providers: [
     IconSetService,

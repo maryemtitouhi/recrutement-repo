@@ -7,13 +7,13 @@ export const navItems: any[] = [
   },
   {
     name: 'Sociétés',
-    url: '/formateur',
+    url: '/user/societe',
     icon: 'fa fa-building-o fa-lg',
     role: ['ROLE_ADMIN']
   },
   {
     name: 'Candidats',
-    url: '/candidat',
+    url: '/user/candidat',
     icon: 'icon-people',
     role: ['ROLE_ADMIN']
   },
