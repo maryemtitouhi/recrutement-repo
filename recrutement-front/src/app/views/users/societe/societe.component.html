@@ -1,1 +1,85 @@
-<p>societe works!</p>
+<div class="card">
+  <div class="card-header">
+
+
+    <strong>Societe</strong>
+
+
+  </div>
+
+  <div class="card-body">
+
+
+    <p-table [value]="societes" dataKey="id">
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 3rem"></th>
+          <th>Raison socaile</th>
+          <th>Matricule Fiscale</th>
+          <th>Registre de Commerce</th>
+          <th>Email</th>
+          <th width="12%">Téléphone</th>
+          <th width="10%">Etat</th>
+
+
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-row let-expanded="expanded">
+        <tr>
+          <td>
+            <button type="button"
+                    pButton pRipple [pRowToggler]="row"
+                    class="p-button-text p-button-rounded p-button-plain"
+                    [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'">
+            </button>
+          </td>
+          <td>{{row.raisonSocial}}</td>
+          <td>{{row.matriculeFiscal}}</td>
+          <td>{{row.registreCommerce}}</td>
+
+          <td>{{row.email}}</td>
+          <td>{{row.telephone}}</td>
+          <td>
+            <p-inputSwitch [(ngModel)]="row.enabled" (onChange)="changeEtat(row)"></p-inputSwitch>
+          </td>
+
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="rowexpansion" let-row>
+        <tr>
+          <td colspan="7">
+            <table class="table">
+              <thead>
+              <tr>
+                <th>Taille société</th>
+                <th>Pays</th>
+                <th>Ville</th>
+                <th>Site web</th>
+                <th width="40%">Adresse</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>{{row.taille}}</td>
+                <td>{{row?.ville?.pays?.libelle}}</td>
+                <td>{{row?.ville?.libelle}}</td>
+                <td>{{row.siteWeb}}</td>
+                <td>{{row?.addresse}}</td>
+              </tr>
+              </tbody>
+
+            </table>
+          </td>
+        </tr>
+      </ng-template>
+
+
+    </p-table>
+
+
+  </div>
+
+
+</div>
+

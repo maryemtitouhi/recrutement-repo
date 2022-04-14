@@ -1,6 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {PerfectScrollbarConfigInterface, PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
@@ -19,8 +18,8 @@ import {AppRoutingModule} from './app.routing';
 // Import 3rd party components
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
 import {TabsModule} from 'ngx-bootstrap/tabs';
-import { SpecialiteComponent } from './views/settings/specialite/specialite.component';
-import {HttpClientModule} from '@angular/common/http';
+import {SpecialiteComponent} from './views/settings/specialite/specialite.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {TableModule} from 'primeng-lts/table';
 import {DialogModule} from 'primeng-lts/dialog';
 import {ToastModule} from 'primeng-lts/toast';
@@ -33,17 +32,17 @@ import {ConfirmPopupModule} from 'primeng-lts/confirmpopup';
 import {KeyFilterModule} from 'primeng-lts/keyfilter';
 import {MultiSelectModule} from 'primeng-lts/multiselect';
 import {InputSwitchModule} from 'primeng-lts/inputswitch';
-import { TypePosteComponent } from './views/settings/type-poste/type-poste.component';
-import { PaysComponent } from './views/settings/pays/pays.component';
-import { VillesComponent } from './views/settings/villes/villes.component';
-import { LangueComponent } from './views/settings/langue/langue.component';
-import { CandidatComponent } from './views/users/candidat/candidat.component';
-import { SocieteComponent } from './views/users/societe/societe.component';
+import {TypePosteComponent} from './views/settings/type-poste/type-poste.component';
+import {PaysComponent} from './views/settings/pays/pays.component';
+import {VillesComponent} from './views/settings/villes/villes.component';
+import {LangueComponent} from './views/settings/langue/langue.component';
+import {CandidatComponent} from './views/users/candidat/candidat.component';
+import {SocieteComponent} from './views/users/societe/societe.component';
+import {JwtInterceptorService} from './shared/interceptors/jwt-interceptor.service';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
-
 
 
 @NgModule({
@@ -89,7 +88,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   providers: [
     IconSetService,
     MessageService,
-    ConfirmationService
+    ConfirmationService,
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true}
   ],
   bootstrap: [AppComponent]
 })

@@ -14,6 +14,7 @@ import {VillesComponent} from './views/settings/villes/villes.component';
 import {LangueComponent} from './views/settings/langue/langue.component';
 import {CandidatComponent} from './views/users/candidat/candidat.component';
 import {SocieteComponent} from './views/users/societe/societe.component';
+import {AuthGuard} from './shared/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -38,9 +39,7 @@ export const routes: Routes = [
   {
     path: '',
     component: DefaultLayoutComponent,
-    data: {
-      title: 'Home'
-    },
+    canActivate: [AuthGuard],
     children: [
       {path: 'settings/specialite', component: SpecialiteComponent},
       {path: 'settings/type-poste', component: TypePosteComponent},
