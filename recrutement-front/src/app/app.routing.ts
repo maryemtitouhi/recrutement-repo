@@ -15,6 +15,8 @@ import {LangueComponent} from './views/settings/langue/langue.component';
 import {CandidatComponent} from './views/users/candidat/candidat.component';
 import {SocieteComponent} from './views/users/societe/societe.component';
 import {AuthGuard} from './shared/guards/auth.guard';
+import {ProfilComponent} from './views/users/profil/profil.component';
+import {ChangePasswordComponent} from './views/users/change-password/change-password.component';
 
 export const routes: Routes = [
   {
@@ -48,6 +50,8 @@ export const routes: Routes = [
       {path: 'settings/langue', component: LangueComponent},
       {path: 'user/candidat', component: CandidatComponent},
       {path: 'user/societe', component: SocieteComponent},
+      {path: 'user/profil', component: ProfilComponent},
+      {path: 'user/change-password', component: ChangePasswordComponent},
     ]
   }
 ];

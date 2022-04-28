@@ -1,14 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import { navItems } from '../../_nav';
 import {JwtHelperService} from '@auth0/angular-jwt';
+import {NgxPermissionsService} from 'ngx-permissions';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './default-layout.component.html'
 })
-export class DefaultLayoutComponent implements  OnInit{
+export class DefaultLayoutComponent implements  OnInit {
   public sidebarMinimized = false;
   public navItems = navItems;
+  constructor(private permissionsService: NgxPermissionsService) {
+  }
 
   toggleMinimize(e) {
     this.sidebarMinimized = e;
@@ -21,8 +24,7 @@ export class DefaultLayoutComponent implements  OnInit{
       const decodedToken = jwtHeper.decodeToken(token);
       const roles = decodedToken.roles;
      this.navItems =  this.navItems.filter(nav => nav.roles.includes(roles[0]));
-      console.log(roles);
-     console.log(this.navItems);
+     this.permissionsService.loadPermissions(roles);
     }
   }
 

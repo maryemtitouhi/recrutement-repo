@@ -1,0 +1,286 @@
+<form #f1="ngForm" (ngSubmit)="f1. form. valid && updateCandidat()"
+      *ngxPermissionsOnly="['ROLE_CANDIDAT']">
+
+  <div class="card">
+    <div class="card-body p-4">
+
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="icon-user"></i></span>
+        </div>
+        <input #nom="ngModel"
+               [(ngModel)]="candidat.nom"
+               class="form-control {{f1.submitted && nom.invalid?'is-invalid' : '' }}" name="nom" placeholder="Nom"
+               required type="text">
+        <div class="invalid-feedback"> Nom est obligatoire.</div>
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="icon-user"></i></span>
+        </div>
+        <input #prenom="ngModel" [(ngModel)]="candidat.prenom"
+               class="form-control  {{f1.submitted && prenom.invalid?'is-invalid' : '' }}" name="prenom"
+               placeholder="Prénom" required type="text">
+        <div class="invalid-feedback"> Prénom est obligatoire.</div>
+      </div>
+
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="icon-calendar"></i></span>
+        </div>
+        <input #dateNaissance="ngModel"
+               [(ngModel)]="candidat.dateNaissance"
+               class="form-control {{f1.submitted && dateNaissance.invalid?'is-invalid' : '' }}" name="dateNaissance"
+               required type="date">
+        <div class="invalid-feedback"> Date de naissance obligatoire.</div>
+      </div>
+
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="icon-phone"></i></span>
+        </div>
+        <input #telephone="ngModel"
+               [(ngModel)]="candidat.telephone"
+               class="form-control {{f1.submitted && telephone.invalid?'is-invalid' : '' }}"
+               maxlength="8"
+               minlength="8"
+               name="telephone"
+               pKeyFilter="pint" placeholder="Téléphone"
+               required type="text">
+        <div *ngIf="f1.submitted && telephone.invalid" class="invalid-feedback">
+          <div *ngIf="telephone?.errors['required']">
+            Téléphone est obligatoire.
+          </div>
+          <div *ngIf="telephone?.errors['minlength']">
+            Téléphone doit contenir 8 chiffres.
+          </div>
+        </div>
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="icon-flag"></i></span>
+        </div>
+        <select #pays="ngModel"
+                (ngModelChange)="getVillesByPays(country.id)"
+                [(ngModel)]="country" [compareWith]="compareFn"
+                class="form-control {{f1.submitted && pays.invalid?'is-invalid' : '' }}" name="country"
+                required>
+          <option *ngFor="let count of countries " [ngValue]="count">{{count.libelle}}</option>
+        </select>
+        <div class="invalid-feedback"> Pays est obligatoire.</div>
+      </div>
+
+      <div  class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="cil-building"></i></span>
+        </div>
+        <select #ville="ngModel"
+                [(ngModel)]="candidat.ville"
+                [compareWith]="compareFn" class="form-control {{f1.submitted && ville.invalid?'is-invalid' : '' }}"
+                name="ville" required>
+          <option *ngFor="let vil of villes " [ngValue]="vil">{{vil.libelle}}</option>
+        </select>
+        <div class="invalid-feedback"> Ville est obligatoire.</div>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="icon-location-pin"></i></span>
+        </div>
+        <input #adresse="ngModel" [(ngModel)]="candidat.addresse"
+               class="form-control {{f1.submitted && adresse.invalid?'is-invalid' : '' }}" name="addresse"
+               placeholder="Adresse"
+               required type="text">
+        <div class="invalid-feedback"> Adresse est obligatoire.</div>
+      </div>
+
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">@</span>
+        </div>
+        <input #mail="ngModel"
+               [(ngModel)]="candidat.email"
+               class="form-control  {{f1.submitted && mail.invalid?'is-invalid' : '' }}" email
+               name="email" placeholder="Email"
+               required type="text">
+
+        <div *ngIf="f1.submitted && mail.invalid" class="invalid-feedback">
+          <div *ngIf="mail?.errors['required']">
+            Email est obligatoire.
+          </div>
+          <div *ngIf="mail?.errors['email']">
+            Email invalid.
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="card-footer">
+      <div class="row pull-right">
+        <button class="btn btn-primary">Modifier</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+<form #f1="ngForm"
+      (ngSubmit)="f1. form. valid && updateSociete()" *ngxPermissionsOnly="['ROLE_SOCIETE']">
+
+  <div class="card">
+    <div class="card-body p-4">
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="cil-bank"></i></span>
+        </div>
+        <input #raisonSocial="ngModel"
+               [(ngModel)]="societe.raisonSocial"
+               class="form-control {{f1.submitted && raisonSocial.invalid?'is-invalid' : '' }}" name="raisonSocial"
+               placeholder="Raison Sociale" required type="text">
+        <div class="invalid-feedback"> Raison Sociale est obligatoire.</div>
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="icon-folder"></i></span>
+        </div>
+        <input #matriculeFiscal="ngModel" [(ngModel)]="societe.matriculeFiscal"
+               class="form-control {{f1.submitted && matriculeFiscal.invalid?'is-invalid' : '' }}"
+               name="matriculeFiscal"
+               placeholder="Matricule fiscale"
+               required type="text">
+        <div class="invalid-feedback"> Matricule fiscale est obligatoire.</div>
+      </div>
+
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="icon-notebook"></i></span>
+        </div>
+        <input #registreCommerce="ngModel"
+               [(ngModel)]="societe.registreCommerce"
+               class="form-control {{f1.submitted && registreCommerce.invalid?'is-invalid' : '' }}"
+               name="registreCommerce" placeholder="Registre de commerce"
+               required type="text">
+        <div class="invalid-feedback"> Registre de commerce obligatoire.</div>
+      </div>
+
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="cil-4k"></i></span>
+        </div>
+        <input [(ngModel)]="societe.taille"
+               class="form-control "
+               name="taille"
+               placeholder="Taille Société" type="text">
+      </div>
+
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="icon-paper-clip"></i></span>
+        </div>
+        <input [(ngModel)]="societe.siteWeb"
+               class="form-control "
+               name="siteWeb"
+               placeholder="Site web" type="text">
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="icon-phone"></i></span>
+        </div>
+        <input #telephone="ngModel"
+               [(ngModel)]="societe.telephone"
+               class="form-control {{f1.submitted && telephone.invalid?'is-invalid' : '' }}"
+               maxlength="8"
+               minlength="8"
+               name="telephone"
+               pKeyFilter="pint" placeholder="Téléphone"
+               required type="text">
+        <div *ngIf="f1.submitted && telephone.invalid" class="invalid-feedback">
+          <div *ngIf="telephone?.errors['required']">
+            Téléphone est obligatoire.
+          </div>
+          <div *ngIf="telephone?.errors['minlength']">
+            Téléphone doit contenir 8 chiffres.
+          </div>
+        </div>
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="icon-flag"></i></span>
+        </div>
+        <select #pays="ngModel"
+                (ngModelChange)="getVillesByPays(country.id)"
+                [(ngModel)]="country" [compareWith]="compareFn"
+                class="form-control {{f1.submitted && pays.invalid?'is-invalid' : '' }}" name="country"
+                required>
+          <option *ngFor="let count of countries " [ngValue]="count">{{count.libelle}}</option>
+        </select>
+        <div class="invalid-feedback"> Pays est obligatoire.</div>
+      </div>
+
+      <div  class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="cil-building"></i></span>
+        </div>
+        <select
+          #ville="ngModel" [(ngModel)]="societe.ville"
+          [compareWith]="compareFn" class="form-control {{f1.submitted && ville.invalid?'is-invalid' : '' }}"
+          name="ville" required>
+          <option *ngFor="let vil of villes " [ngValue]="vil">{{vil.libelle}}</option>
+        </select>
+        <div class="invalid-feedback"> Ville est obligatoire.</div>
+      </div>
+
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="icon-location-pin"></i></span>
+        </div>
+        <input #adresse="ngModel" [(ngModel)]="societe.addresse"
+               class="form-control {{f1.submitted && adresse.invalid?'is-invalid' : '' }}" name="addresse"
+               placeholder="Adresse"
+               required type="text">
+        <div class="invalid-feedback"> Adresse est obligatoire.</div>
+      </div>
+
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">@</span>
+        </div>
+        <input #mail="ngModel"
+               [(ngModel)]="societe.email"
+               class="form-control  {{f1.submitted && mail.invalid?'is-invalid' : '' }}" email
+               name="email" placeholder="Email"
+               required type="text">
+
+        <div *ngIf="f1.submitted && mail.invalid" class="invalid-feedback">
+          <div *ngIf="mail?.errors['required']">
+            Email est obligatoire.
+          </div>
+          <div *ngIf="mail?.errors['email']">
+            Email invalid.
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="card-footer">
+      <div class="row pull-right">
+        <button class="btn btn-primary">Modifier</button>
+      </div>
+    </div>
+  </div>
+</form>

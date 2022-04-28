@@ -21,6 +21,7 @@ export class LoginComponent {
     this.authService.authenticate(this.user).subscribe(res => {
       this.router.navigate(['/']);
       localStorage.setItem('token', res.token);
+      localStorage.setItem('currentUser', JSON.stringify(res.user));
     }, ex => {
       this.messageService
         .add({severity: 'error', summary: 'Erreur d\'authentification', detail: 'Merci de vérifier votre email ou mot de passe'});

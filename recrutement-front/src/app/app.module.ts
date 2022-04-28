@@ -39,7 +39,10 @@ import {LangueComponent} from './views/settings/langue/langue.component';
 import {CandidatComponent} from './views/users/candidat/candidat.component';
 import {SocieteComponent} from './views/users/societe/societe.component';
 import {JwtInterceptorService} from './shared/interceptors/jwt-interceptor.service';
-
+import { NgxPermissionsModule } from 'ngx-permissions';
+import { ProfilComponent } from './views/users/profil/profil.component';
+import { ChangePasswordComponent } from './views/users/change-password/change-password.component';
+import {DatePipe} from '@angular/common';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -70,7 +73,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ConfirmPopupModule,
     KeyFilterModule,
     MultiSelectModule,
-    InputSwitchModule
+    InputSwitchModule,
+    NgxPermissionsModule.forRoot()
   ],
   declarations: [
     AppComponent,
@@ -83,12 +87,16 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     VillesComponent,
     LangueComponent,
     CandidatComponent,
-    SocieteComponent
+    SocieteComponent,
+    ProfilComponent,
+    ChangePasswordComponent
+
   ],
   providers: [
     IconSetService,
     MessageService,
     ConfirmationService,
+    DatePipe,
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true}
   ],
   bootstrap: [AppComponent]
