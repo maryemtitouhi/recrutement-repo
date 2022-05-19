@@ -13,7 +13,9 @@ public class Experience {
     private String titre;
     private String societe;
     private String description;
+    @Temporal(TemporalType.DATE)
     private Date debut;
+    @Temporal(TemporalType.DATE)
     private Date fin;
 
     @ManyToOne

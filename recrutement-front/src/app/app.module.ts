@@ -43,6 +43,15 @@ import { NgxPermissionsModule } from 'ngx-permissions';
 import { ProfilComponent } from './views/users/profil/profil.component';
 import { ChangePasswordComponent } from './views/users/change-password/change-password.component';
 import {DatePipe} from '@angular/common';
+import { CvComponent } from './views/cv/cv.component';
+import { ExperienceComponent } from './views/cv/experience/experience.component';
+import { DiplomeComponent } from './views/cv/diplome/diplome.component';
+import { DocumentComponent } from './views/cv/document/document.component';
+import { CentreInteretComponent } from './views/cv/centre-interet/centre-interet.component';
+import { CompetenceComponent } from './views/cv/competence/competence.component';
+import {TabViewModule} from 'primeng-lts/tabview';
+import { NiveauLangueComponent } from './views/cv/niveau-langue/niveau-langue.component';
+import { InformationComponent } from './views/cv/information/information.component';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -74,7 +83,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     KeyFilterModule,
     MultiSelectModule,
     InputSwitchModule,
-    NgxPermissionsModule.forRoot()
+    NgxPermissionsModule.forRoot(),
+    TabViewModule
   ],
   declarations: [
     AppComponent,
@@ -89,7 +99,15 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     CandidatComponent,
     SocieteComponent,
     ProfilComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    CvComponent,
+    ExperienceComponent,
+    DiplomeComponent,
+    DocumentComponent,
+    CentreInteretComponent,
+    CompetenceComponent,
+    NiveauLangueComponent,
+    InformationComponent
 
   ],
   providers: [

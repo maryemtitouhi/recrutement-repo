@@ -1,0 +1,54 @@
+<p-tabView>
+  <p-tabPanel>
+    <ng-template pTemplate="header">
+      <i class="icon-user"></i>
+      <span>Information personnelle</span>
+    </ng-template>
+    <app-information  *ngIf="cv" [cv]="cv"></app-information>
+  </p-tabPanel>
+  <p-tabPanel>
+    <ng-template pTemplate="header">
+      <i class="icon-graduation"></i>
+      <span>Diplomes</span>
+    </ng-template>
+    <app-diplome *ngIf="cv" [cv]="cv"></app-diplome>
+  </p-tabPanel>
+  <p-tabPanel>
+    <ng-template pTemplate="header">
+      <i class="icon-eyeglass"> </i>
+      <span>Expériences</span>
+    </ng-template>
+    <app-experience  *ngIf="cv" [cv]="cv"></app-experience>
+  </p-tabPanel>
+  <p-tabPanel>
+    <ng-template pTemplate="header">
+      <i class="icon-badge"></i>
+      <span>Compétences</span>
+    </ng-template>
+    <app-competence></app-competence>
+  </p-tabPanel>
+  <p-tabPanel>
+    <ng-template pTemplate="header">
+      <i class="icon-speech"></i>
+      <span>Langues</span>
+    </ng-template>
+    <app-niveau-langue></app-niveau-langue>
+  </p-tabPanel>
+
+  <p-tabPanel>
+    <ng-template pTemplate="header">
+      <i class=""></i>
+      <span>Centre d''intérêt</span>
+    </ng-template>
+    <app-centre-interet></app-centre-interet>
+  </p-tabPanel>
+
+  <p-tabPanel>
+    <ng-template pTemplate="header">
+      <i class="cil-file"></i>
+      <span>Documents</span>
+    </ng-template>
+    <app-document></app-document>
+
+  </p-tabPanel>
+</p-tabView>

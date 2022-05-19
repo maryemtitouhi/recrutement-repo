@@ -1,0 +1,109 @@
+<div class="card">
+  <div class="card-header">
+
+
+
+
+    <div class="card-header-actions">
+      <button class="btn btn-success" (click)="clickAdd()">
+        <i class="fa fa-plus"></i>
+        Nouveau Diplome
+      </button>
+    </div>
+  </div>
+
+  <div class="card-body">
+
+
+    <p-table [value]="diplomes">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Titre</th>
+          <th>Etablissement</th>
+          <th>Début</th>
+          <th>Fin</th>
+          <th width="12%">Action</th>
+
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-row>
+        <tr>
+          <td>{{row.titre}}</td>
+          <td>{{row.etablissement}}</td>
+          <td>{{row.debut | date: 'dd/MM/yyyy'}}</td>
+          <td>{{row.fin | date: 'dd/MM/yyyy'}}</td>
+          <td>
+
+            <button pButton pRipple type="button" icon="pi pi-trash"
+                    pTooltip="Supprimer"
+                    tooltipPosition="top"
+                    class="p-button-rounded p-button-danger p-button-outlined"
+                    (click)="delete($event, row.id)"></button>
+
+            <button pButton pRipple type="button" icon="pi pi-pencil"
+                    pTooltip="Editer"
+                    tooltipPosition="top"
+                    (click)="clickEdit(row)"
+                    class="p-button-rounded p-button-warning p-button-outlined"></button>
+
+
+
+
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+
+  </div>
+
+
+</div>
+
+
+<p-dialog header="Ville" [(visible)]="display" [breakpoints]="{'960px': '75vw'}" [style]="{width: '50vw'}"
+          [baseZIndex]="10000"
+          [modal]="true" [draggable]="false" [resizable]="false">
+
+  <div class="form-group">
+    <label>Titre</label>
+    <input class="form-control" [(ngModel)]="diplome.titre" #titre="ngModel" required>
+  </div>
+
+
+  <div class="form-group">
+    <label>Etablissement</label>
+    <input class="form-control" [(ngModel)]="diplome.etablissement" #etab="ngModel" required>
+  </div>
+
+
+  <div class="row">
+    <div class="col-sm-6">
+      <label>Début</label>
+      <input type="date" class="form-control"
+             (change)="changeDate()"
+             [(ngModel)]="diplome.debut" #debut="ngModel" required>
+
+    </div>
+
+
+    <div class="col-sm-6">
+      <label>Fin</label>
+      <input type="date" class="form-control" [min]="minDateFin"
+             [disabled]="!diplome.debut"
+             [(ngModel)]="diplome.fin" #fin="ngModel" required>
+
+    </div>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <button pButton pRipple (click)="display=false" label="Annuler" class="p-button-outlined p-button-danger"></button>
+    <button *ngIf="!diplome.id" pButton label="Ajouter" class="p-button-info"
+            [disabled]="titre.invalid || etab.invalid || debut.invalid || fin.invalid"
+            (click)="add()"></button>
+
+    <button *ngIf="diplome.id" pButton label="Modifier" class="p-button-info"
+            [disabled]="titre.invalid || etab.invalid || debut.invalid || fin.invalid"
+            (click)="update()"></button>
+  </ng-template>
+</p-dialog>

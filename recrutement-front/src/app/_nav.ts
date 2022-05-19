@@ -47,4 +47,10 @@ export const navItems: any[] = [
     icon: 'fa fa-language fa-lg',
     roles: ['ROLE_ADMIN']
   },
+  {
+    name: 'Mon CV',
+    url: '/cv',
+    icon: 'cil-file',
+    roles: ['ROLE_CANDIDAT']
+  },
 ];

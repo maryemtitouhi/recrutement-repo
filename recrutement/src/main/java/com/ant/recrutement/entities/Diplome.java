@@ -13,7 +13,9 @@ public class Diplome {
         private Integer id;
         private String titre;
         private String etablissement;
+        @Temporal(TemporalType.DATE)
         private Date debut;
+        @Temporal(TemporalType.DATE)
         private Date fin;
         @ManyToOne
         private Cv cv;

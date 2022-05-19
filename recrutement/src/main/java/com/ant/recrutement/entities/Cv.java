@@ -9,9 +9,9 @@ import java.util.Date;
 public class Cv {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @OneToOne
-    @PrimaryKeyJoinColumn(name = "id")
     private Candidat candidat;
     private String titre;
     private String niveauEtude;

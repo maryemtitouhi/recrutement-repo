@@ -1,7 +1,9 @@
 package com.ant.recrutement.services;
 
 import com.ant.recrutement.entities.Candidat;
+import com.ant.recrutement.entities.Cv;
 import com.ant.recrutement.entities.Societe;
+import com.ant.recrutement.repositories.CVRepository;
 import com.ant.recrutement.repositories.CandidatRepository;
 import com.ant.recrutement.repositories.SocieteRepository;
 import com.ant.recrutement.repositories.UserRepository;
@@ -21,6 +23,8 @@ public class RegisterService {
     private SocieteRepository societeRepository;
 
     @Autowired
+    private CVRepository cvRepository;
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     public MessageResponse register(Candidat candidat) {
@@ -34,7 +38,10 @@ public class RegisterService {
         String encodedPassword = passwordEncoder.encode(candidat.getPassword());
         candidat.setPassword(encodedPassword);
         candidat.setEnabled(true);
-        candidatRepository.save(candidat);
+       candidat = candidatRepository.save(candidat);
+        Cv cv = new Cv();
+        cv.setCandidat(candidat);
+        cvRepository.save(cv);
         return new MessageResponse(true, "Succès", "Inscription effectué");
     }
 

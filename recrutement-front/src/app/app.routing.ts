@@ -17,6 +17,7 @@ import {SocieteComponent} from './views/users/societe/societe.component';
 import {AuthGuard} from './shared/guards/auth.guard';
 import {ProfilComponent} from './views/users/profil/profil.component';
 import {ChangePasswordComponent} from './views/users/change-password/change-password.component';
+import {CvComponent} from './views/cv/cv.component';
 
 export const routes: Routes = [
   {
@@ -52,6 +53,7 @@ export const routes: Routes = [
       {path: 'user/societe', component: SocieteComponent},
       {path: 'user/profil', component: ProfilComponent},
       {path: 'user/change-password', component: ChangePasswordComponent},
+      {path: 'cv', component: CvComponent},
     ]
   }
 ];

@@ -1,0 +1,91 @@
+
+    <table class="table table-striped  table-sm">
+      <tr>
+        <td>Nom</td>
+        <td>{{cv?.candidat?.nom}}</td>
+      </tr>
+
+      <tr>
+        <td>Prénom</td>
+        <td>{{cv?.candidat?.prenom}}</td>
+      </tr>
+
+      <tr>
+        <td>Email</td>
+        <td>{{cv?.candidat?.email}}</td>
+      </tr>
+
+      <tr>
+        <td>Téléphone</td>
+        <td>{{cv?.candidat?.telephone}}</td>
+      </tr>
+
+      <tr>
+        <td>Pays</td>
+        <td>{{cv?.candidat?.ville?.pays?.libelle}}</td>
+      </tr>
+
+      <tr>
+        <td>Ville</td>
+        <td>{{cv?.candidat?.ville?.libelle}}</td>
+      </tr>
+
+      <tr>
+        <td>Adresse</td>
+        <td>{{cv?.candidat?.addresse}}</td>
+      </tr>
+
+
+      <tr>
+        <td>Titre CV</td>
+        <td>
+          <input [(ngModel)]="cv.titre" class="form-control" required #titre="ngModel">
+        </td>
+      </tr>
+
+      <tr>
+        <td>Niveau d'etude</td>
+        <td>
+          <select [(ngModel)]="cv.niveauEtude" class="form-control" required #niveau="ngModel">
+            <option value="Primaire">Primaire</option>
+            <option value="Secondaire">Secondaire</option>
+            <option value="Formations professionnelles">Formations professionnelles</option>
+            <option value="BAC">BAC</option>
+            <option value="BAC+1">BAC+1</option>
+            <option value="BAC+2">BAC+2</option>
+            <option value="BAC+3">BAC+3</option>
+            <option value="BAC+4">BAC+4</option>
+            <option value="BAC+5">BAC+5</option>
+            <option value="Doctorat">Doctorat</option>
+            <option value="Expert, Recherche">Expert, Recherche</option>
+          </select>
+        </td>
+      </tr>
+
+
+      <tr>
+        <td>Année d'experience</td>
+        <td>
+          <select [(ngModel)]="cv.anneeExperience" class="form-control" required #annee="ngModel">
+            <option value="Moins d'un an">Moins d'un an</option>
+            <option value="Entre 1 et 2 ans">Entre 1 et 2 ans</option>
+            <option value="Entre 2 et 5 ans">Entre 2 et 5 ans</option>
+            <option value="Entre 5 et 10 ans">Entre 5 et 10 ans</option>
+            <option value="Plus que 10 ans">Plus que 10 ans</option>
+          </select>
+        </td>
+      </tr>
+
+
+      <tr>
+        <td></td>
+        <td>
+          <button  class="pull-right  btn btn-primary"
+          [disabled]="titre.invalid || annee.invalid || niveau.invalid"
+          (click)="updateCv()">
+            Modifer</button>
+        </td>
+      </tr>
+
+    </table>
+
