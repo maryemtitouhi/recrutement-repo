@@ -21,5 +21,5 @@ public class Langue {
 
     @JsonIgnore
     @OneToMany(mappedBy = "langue")
-    private List<Niveau> niveaux;
+    private List<NiveauLangue> niveauLangues;
 }

@@ -8,5 +8,5 @@ public interface LangueRepository extends JpaRepository<Langue, Integer> {
 
     boolean existsByIdAndOffresIsNotNull(Integer id);
 
-    boolean existsByIdAndNiveauxIsNotNull(Integer id);
+    boolean existsByIdAndNiveauLanguesIsNotNull(Integer id);
 }

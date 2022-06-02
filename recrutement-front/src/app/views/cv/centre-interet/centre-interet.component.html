@@ -1,1 +1,83 @@
-<p>centre-interet works!</p>
+<div class="card">
+  <div class="card-header">
+
+
+    <div class="card-header-actions">
+      <button (click)="clickAdd()" class="btn btn-success">
+        <i class="fa fa-plus"></i>
+        Nouvelle Centre d'intérêt
+      </button>
+    </div>
+  </div>
+
+  <div class="card-body">
+
+
+    <p-table [value]="centreInterets" dataKey="id">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Libellé</th>
+
+          <th width="12%">Action</th>
+
+        </tr>
+      </ng-template>
+      <ng-template let-row pTemplate="body" >
+        <tr>
+
+          <td>{{row.libelle}}</td>
+
+          <td>
+
+            <button (click)="delete($event, row.id)" class="p-button-rounded p-button-danger p-button-outlined" icon="pi pi-trash" pButton
+                    pRipple
+                    pTooltip="Supprimer"
+                    tooltipPosition="top"
+                    type="button"></button>
+
+            <button (click)="clickEdit(row)" class="p-button-rounded p-button-warning p-button-outlined" icon="pi pi-pencil" pButton
+                    pRipple
+                    pTooltip="Editer"
+                    tooltipPosition="top"
+                    type="button"></button>
+
+
+          </td>
+        </tr>
+      </ng-template>
+
+
+    </p-table>
+
+
+  </div>
+
+
+</div>
+
+
+<p-dialog [(visible)]="display" [baseZIndex]="10000" [breakpoints]="{'960px': '75vw'}" [draggable]="false"
+          [modal]="true"
+          [resizable]="false" [style]="{width: '50vw'}" header="Compétence">
+
+  <div class="form-group">
+    <label>Libellé</label>
+    <input #titre="ngModel" [(ngModel)]="centreInteret.libelle" class="form-control" required>
+  </div>
+
+
+
+
+
+  <ng-template pTemplate="footer">
+    <button (click)="display=false" class="p-button-outlined p-button-danger" label="Annuler" pButton pRipple></button>
+    <button (click)="add()" *ngIf="!centreInteret.id" [disabled]="titre.invalid" class="p-button-info"
+            label="Ajouter"
+            pButton></button>
+
+    <button (click)="update()" *ngIf="centreInteret.id"
+            [disabled]="titre.invalid" class="p-button-info"
+            label="Modifier"
+            pButton></button>
+  </ng-template>
+</p-dialog>
