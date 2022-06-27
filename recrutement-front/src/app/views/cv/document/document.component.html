@@ -1,1 +1,37 @@
-<p>document works!</p>
+
+<div class="fom-group">
+  <label>CV:</label>
+<div class="input-group">
+
+  <div class="custom-file">
+    <input type="file" class="custom-file-input" id="exampleInputFile"
+    (change)="selectCv($event)">
+    <label class="custom-file-label" for="exampleInputFile">{{cvName}}</label>
+  </div>
+  <div class="input-group-append">
+    <button class="btn btn-success" type="button" [disabled]="!cvDoc"
+    (click)="downloadCV()">
+      <i class="fa fa-download"></i>
+    </button>
+  </div>
+</div>
+</div>
+
+
+<div class="fom-group">
+  <label>Lettre de motivation:</label>
+  <div class="input-group">
+
+    <div class="custom-file">
+      <input type="file" class="custom-file-input" id="exampleInputFile1"
+             (change)="selectLettre($event)">
+      <label class="custom-file-label" for="exampleInputFile1">{{lettreName}}</label>
+    </div>
+    <div class="input-group-append">
+      <button class="btn btn-success" type="button" [disabled]="!lettreDoc"
+              (click)="downloadLettre()">
+        <i class="fa fa-download"></i>
+      </button>
+    </div>
+  </div>
+</div>

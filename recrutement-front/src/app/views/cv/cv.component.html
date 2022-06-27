@@ -1,54 +1,54 @@
 <p-tabView>
   <p-tabPanel>
     <ng-template pTemplate="header">
-      <i class="icon-user"></i>
+      <i class="icon-user mr-2"></i>
       <span>Information personnelle</span>
     </ng-template>
     <app-information  *ngIf="cv" [cv]="cv"></app-information>
   </p-tabPanel>
   <p-tabPanel>
     <ng-template pTemplate="header">
-      <i class="icon-graduation"></i>
+      <i class="icon-graduation mr-2"></i>
       <span>Diplomes</span>
     </ng-template>
     <app-diplome *ngIf="cv" [cv]="cv"></app-diplome>
   </p-tabPanel>
   <p-tabPanel>
     <ng-template pTemplate="header">
-      <i class="icon-eyeglass"> </i>
+      <i class="icon-eyeglass mr-2"> </i>
       <span>Expériences</span>
     </ng-template>
     <app-experience  *ngIf="cv" [cv]="cv"></app-experience>
   </p-tabPanel>
   <p-tabPanel>
     <ng-template pTemplate="header">
-      <i class="icon-badge"></i>
+      <i class="icon-badge mr-2"></i>
       <span>Compétences</span>
     </ng-template>
-    <app-competence></app-competence>
+    <app-competence *ngIf="cv" [cv]="cv"></app-competence>
   </p-tabPanel>
   <p-tabPanel>
     <ng-template pTemplate="header">
-      <i class="icon-speech"></i>
+      <i class="icon-speech mr-2"></i>
       <span>Langues</span>
     </ng-template>
-    <app-niveau-langue></app-niveau-langue>
+    <app-niveau-langue *ngIf="cv" [cv]="cv"></app-niveau-langue>
   </p-tabPanel>
 
   <p-tabPanel>
     <ng-template pTemplate="header">
-      <i class=""></i>
-      <span>Centre d''intérêt</span>
+      <i class="cil cil-heart mr-2"></i>
+      <span>Centre d'intérêt</span>
     </ng-template>
-    <app-centre-interet></app-centre-interet>
+    <app-centre-interet *ngIf="cv" [cv]="cv"></app-centre-interet>
   </p-tabPanel>
 
   <p-tabPanel>
     <ng-template pTemplate="header">
-      <i class="cil-file"></i>
+      <i class="cil-file mr-2" ></i>
       <span>Documents</span>
     </ng-template>
-    <app-document></app-document>
+    <app-document *ngIf="cv" [cv]="cv"></app-document>
 
   </p-tabPanel>
 </p-tabView>

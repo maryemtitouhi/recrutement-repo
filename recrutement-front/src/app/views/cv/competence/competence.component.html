@@ -1,1 +1,110 @@
-<p>competence works!</p>
+<div class="card">
+  <div class="card-header">
+
+
+    <div class="card-header-actions">
+      <button (click)="clickAdd()" class="btn btn-success">
+        <i class="fa fa-plus"></i>
+        Nouvelle Compétence
+      </button>
+    </div>
+  </div>
+
+  <div class="card-body">
+
+
+    <p-table [value]="competences" dataKey="id">
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 3rem"></th>
+          <th>Titre</th>
+          <th>Niveau</th>
+
+          <th width="12%">Action</th>
+
+        </tr>
+      </ng-template>
+      <ng-template let-row pTemplate="body" let-expanded="expanded">
+        <tr>
+          <td>
+            <button type="button" *ngIf="row.description"
+                    pButton pRipple [pRowToggler]="row"
+                    class="p-button-text p-button-rounded p-button-plain"
+                    [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'">
+            </button>
+          </td>
+          <td>{{row.titre}}</td>
+          <td>
+            <p-rating readonly="true"
+                      stars="5"
+                      [cancel]="false" [(ngModel)]="row.niveau"></p-rating></td>
+
+          <td>
+
+            <button (click)="delete($event, row.id)" class="p-button-rounded p-button-danger p-button-outlined" icon="pi pi-trash" pButton
+                    pRipple
+                    pTooltip="Supprimer"
+                    tooltipPosition="top"
+                    type="button"></button>
+
+            <button (click)="clickEdit(row)" class="p-button-rounded p-button-warning p-button-outlined" icon="pi pi-pencil" pButton
+                    pRipple
+                    pTooltip="Editer"
+                    tooltipPosition="top"
+                    type="button"></button>
+
+
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="rowexpansion" let-row>
+        <tr>
+          <td colspan="4">
+            {{row.description}}
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+
+  </div>
+
+
+</div>
+
+
+<p-dialog [(visible)]="display" [baseZIndex]="10000" [breakpoints]="{'960px': '75vw'}" [draggable]="false"
+          [modal]="true"
+          [resizable]="false" [style]="{width: '50vw'}" header="Compétence">
+
+  <div class="form-group">
+    <label>Titre</label>
+    <input #titre="ngModel" [(ngModel)]="competence.titre" class="form-control" required>
+  </div>
+
+
+  <div class="form-group">
+    <label>Niveau</label>
+
+    <p-rating [(ngModel)]="competence.niveau" ></p-rating>
+  </div>
+
+  <div class="form-group">
+    <label>Déscription</label>
+    <textarea [(ngModel)]="competence.description" class="form-control" >
+      </textarea>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <button (click)="display=false" class="p-button-outlined p-button-danger" label="Annuler" pButton pRipple></button>
+    <button (click)="add()" *ngIf="!competence.id" [disabled]="titre.invalid" class="p-button-info"
+            label="Ajouter"
+            pButton></button>
+
+    <button (click)="update()" *ngIf="competence.id"
+            [disabled]="titre.invalid" class="p-button-info"
+            label="Modifier"
+            pButton></button>
+  </ng-template>
+</p-dialog>

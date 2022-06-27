@@ -52,6 +52,7 @@ import { CompetenceComponent } from './views/cv/competence/competence.component'
 import {TabViewModule} from 'primeng-lts/tabview';
 import { NiveauLangueComponent } from './views/cv/niveau-langue/niveau-langue.component';
 import { InformationComponent } from './views/cv/information/information.component';
+import {RatingModule} from 'primeng-lts/rating';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -84,7 +85,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MultiSelectModule,
     InputSwitchModule,
     NgxPermissionsModule.forRoot(),
-    TabViewModule
+    TabViewModule,
+    RatingModule
   ],
   declarations: [
     AppComponent,

@@ -29,7 +29,7 @@
       <ng-template let-row pTemplate="body" let-expanded="expanded">
         <tr>
           <td>
-            <button type="button"
+            <button type="button" *ngIf="row.description"
                     pButton pRipple [pRowToggler]="row"
                     class="p-button-text p-button-rounded p-button-plain"
                     [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'">
@@ -77,7 +77,7 @@
 
 <p-dialog [(visible)]="display" [baseZIndex]="10000" [breakpoints]="{'960px': '75vw'}" [draggable]="false"
           [modal]="true"
-          [resizable]="false" [style]="{width: '50vw'}" header="Ville">
+          [resizable]="false" [style]="{width: '50vw'}" header="Experience">
 
   <div class="form-group">
     <label>Titre</label>

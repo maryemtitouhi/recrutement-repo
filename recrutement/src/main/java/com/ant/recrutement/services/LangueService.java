@@ -49,7 +49,7 @@ public class LangueService {
         }
 
 
-         exist = langueRepository.existsByIdAndNiveauxIsNotNull(id);
+         exist = langueRepository.existsByIdAndNiveauLanguesIsNotNull(id);
 
         if (exist) {
 
