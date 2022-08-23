@@ -24,6 +24,8 @@ public class Offre {
     private Date dateExpiration;
     private boolean etat;
 
+    @Lob
+    private byte[] image;
 
     @ManyToOne
     private Societe societe;
@@ -32,21 +34,21 @@ public class Offre {
     @OneToMany(mappedBy = "offre")
     private List<Candidature> candidatures;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany()
     @JoinTable(name = "offre_specialites",
             joinColumns = {@JoinColumn(name = "offre_id")},
             inverseJoinColumns = {@JoinColumn(name = "specialite_id")})
     private List<Specialite> specialites;
 
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany()
     @JoinTable(name = "offre_type_posts",
             joinColumns = {@JoinColumn(name = "offre_id")},
             inverseJoinColumns = {@JoinColumn(name = "type_poste_id")})
     private List<TypePoste> typePostes;
 
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany()
     @JoinTable(name = "offre_langues",
             joinColumns = {@JoinColumn(name = "offre_id")},
             inverseJoinColumns = {@JoinColumn(name = "langue_id")})

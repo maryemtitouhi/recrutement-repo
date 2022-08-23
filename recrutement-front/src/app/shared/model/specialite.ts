@@ -1,4 +1,4 @@
 export class Specialite {
-  id: number;
+  id: any;
   libelle: string;
 }

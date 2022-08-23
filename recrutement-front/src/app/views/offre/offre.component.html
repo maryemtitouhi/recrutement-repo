@@ -1,1 +1,64 @@
-<p>offre works!</p>
+<app-layout>
+
+
+  <section class="section-hero overlay inner-page bg-image" header
+           id="home-section" style="background-image: url('assets/images/hero_1.jpg');">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7">
+          <h1 class="text-white font-weight-bold">Mes Offres</h1>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div body>
+    <p-table [value]="offres">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Titre</th>
+          <th>Date création</th>
+          <th>Date expiration</th>
+          <th>Niveau d'étude</th>
+          <th>Niveau d'éxperience</th>
+          <th>Disponibilité</th>
+          <th>Etat</th>
+          <th width="12%">Action</th>
+
+        </tr>
+      </ng-template>
+      <ng-template let-row pTemplate="body">
+        <tr>
+          <td>{{row.titre}}</td>
+          <td>{{row.dateCreation | date: 'dd/MM/yyyy'}}</td>
+          <td>{{row.dateExpiration | date: 'dd/MM/yyyy'}}</td>
+          <td>{{row.niveauEtude}}</td>
+          <td>{{row.niveauExperience}}</td>
+          <td>{{row.disponibiite}}</td>
+          <td>
+            <p-inputSwitch [(ngModel)]="row.etat" (onChange)="changeEtat(row.id)"></p-inputSwitch>
+          </td>
+          <td>
+
+            <button (click)="delete($event, row.id)" class="p-button-rounded p-button-danger p-button-outlined" icon="pi pi-trash" pButton
+                    pRipple
+                    pTooltip="Supprimer"
+                    tooltipPosition="top"
+                    type="button"></button>
+
+            <button class="p-button-rounded p-button-warning p-button-outlined" icon="pi pi-pencil" pButton pRipple
+                    pTooltip="Editer"
+                    routerLink="edit/{{row.id}}"
+                    tooltipPosition="top"
+                    type="button"></button>
+
+
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+
+</app-layout>

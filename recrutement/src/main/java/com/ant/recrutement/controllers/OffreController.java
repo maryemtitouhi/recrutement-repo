@@ -5,7 +5,10 @@ import com.ant.recrutement.responses.MessageResponse;
 import com.ant.recrutement.services.OffreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+
+import java.io.IOException;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -16,13 +19,13 @@ public class OffreController {
     @Autowired
     private OffreService offreService;
     @PostMapping
-    public MessageResponse save(@RequestBody Offre offre){
-        return offreService.save(offre);
+    public MessageResponse save(@RequestPart("image")MultipartFile file, @RequestPart("offre") Offre offre) throws IOException {
+        return offreService.save(file, offre);
     }
 
     @PutMapping
-    public MessageResponse update(@RequestBody Offre offre){
-        return offreService.update(offre);
+    public MessageResponse update(@RequestPart("image")MultipartFile file, @RequestPart("offre") Offre offre) throws IOException {
+        return offreService.update(file, offre);
     }
 
     @DeleteMapping("/{id}")
@@ -36,8 +39,17 @@ public class OffreController {
         return offreService.findBySociete(id);
     }
 
+    @GetMapping("/{id}")
+    public Offre findById(@PathVariable Integer id){
+        return offreService.findById(id);
+    }
     @GetMapping("/available")
     public List<Offre> findAvailable(){
         return offreService.findAvailable();
+    }
+
+    @GetMapping("/etat/{id}")
+    public MessageResponse changeEtat(@PathVariable Integer id){
+        return offreService.changEtat(id);
     }
 }

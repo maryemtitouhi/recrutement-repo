@@ -64,6 +64,7 @@ import {AccordionModule} from 'primeng-lts/accordion';
 import { ViewCvComponent } from './views/cv/view-cv/view-cv.component';
 import { OffreComponent } from './views/offre/offre.component';
 import { AddEditOffreComponent } from './views/offre/add-edit-offre/add-edit-offre.component';
+import {CheckboxModule} from 'primeng-lts/checkbox';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -99,7 +100,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NgxPermissionsModule.forRoot(),
     TabViewModule,
     RatingModule,
-    AccordionModule
+    AccordionModule,
+    CheckboxModule,
   ],
   declarations: [
     AppComponent,

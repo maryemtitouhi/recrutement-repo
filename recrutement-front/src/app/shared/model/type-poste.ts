@@ -1,4 +1,4 @@
 export class TypePoste {
-  id: number;
+  id: any;
   libelle: string;
 }

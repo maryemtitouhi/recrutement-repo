@@ -7,11 +7,11 @@
         <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
           <li><a routerLink="/home" class="nav-link">Home</a></li>
           <li><a href="about.html">About</a></li>
-          <li class="has-children">
-            <a href="job-listings.html">Job Listings</a>
+          <li class="has-children" *ngxPermissionsOnly="['ROLE_SOCIETE']" >
+            <a >Offres</a>
             <ul class="dropdown">
-              <li><a href="job-single.html">Job Single</a></li>
-              <li><a href="post-job.html">Post a Job</a></li>
+              <li><a routerLink="/offre">Mes offres</a></li>
+              <li><a routerLink="/offre/new">Nouvel offre</a></li>
             </ul>
           </li>
           <li class="has-children"  *ngxPermissionsOnly="['ROLE_CANDIDAT']"><a  >Mon CV</a>

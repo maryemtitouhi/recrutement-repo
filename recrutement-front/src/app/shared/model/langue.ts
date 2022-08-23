@@ -1,4 +1,4 @@
 export class Langue {
-  id: number;
+  id: any;
   libelle: string;
 }

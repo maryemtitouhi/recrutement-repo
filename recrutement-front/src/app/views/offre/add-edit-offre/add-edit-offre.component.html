@@ -1,1 +1,126 @@
-<p>add-edit-offre works!</p>
+<app-layout>
+
+
+  <section class="section-hero overlay inner-page bg-image" header
+           id="home-section" style="background-image: url('assets/images/hero_1.jpg');">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7">
+          <h1 class="text-white font-weight-bold">{{offre.id ? 'Modifier offre' : 'Ajouter offre'}}</h1>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div body class="col-lg-12">
+
+    <form #f="ngForm"
+          class="p-4 p-md-5 border rounded col-12">
+      <h3 class="text-black mb-5 border-bottom pb-2">Détails offre</h3>
+
+      <div class="form-group">
+        <label>Charger image</label> <br>
+        <label class="btn btn-primary btn-md btn-file" >
+          Browse File<input #upload accept="image/*"  hidden type="file"  (change)="selectFile($event)">
+        </label>
+      </div>
+
+
+      <div class="form-group">
+        <label>Titre</label>
+        <input [(ngModel)]="offre.titre"
+               class="form-control" name="titre" placeholder="Titre" required type="text">
+      </div>
+
+      <div class="form-group">
+        <label>Déscription</label>
+        <textarea [(ngModel)]="offre.description" class="form-control" name="description"
+                  placeholder="Déscription" required rows="10" type="text">
+        </textarea>
+      </div>
+
+
+      <div class="form-group">
+        <label>Disponibilité</label>
+        <select [(ngModel)]="offre.disponibiite" class="form-control" name="disponibilite" required>
+          <option value="Plein temps">Plein temps</option>
+          <option value="Temps partiel">Temps partiel</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Niveau d'étude</label>
+        <select [(ngModel)]="offre.niveauEtude" class="form-control" name="niveauEtude" required>
+          <option value="Bac">Bac</option>
+          <option value="Bac+1">Bac+1</option>
+          <option value="Bac+2">Bac+2</option>
+          <option value="Bac+3">Bac+3</option>
+          <option value="Bac+4">Bac+4</option>
+          <option value="Bac+5">Bac+5</option>
+          <option value="Doctorat">Doctorat</option>
+          <option value="Expert">Expert</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Niveau d'éxperience</label>
+        <select [(ngModel)]="offre.niveauExperience" class="form-control" name="niveauExperience" required>
+          <option value="Aucune éxperience">Aucune éxperience</option>
+          <option value="Moins d'un an">Moins d'un an</option>
+          <option value="Entre 1 et 2 ans">Entre 1 et 2 ans</option>
+          <option value="Entre 2 et 5 ans">Entre 2 et 5 ans</option>
+          <option value="Entre 5 et 10 ans">Entre 5 et 10 ans</option>
+          <option value="Plus que 10 ans">Plus que 10 ans</option>
+        </select>
+      </div>
+      <div class="row">
+        <div class="form-group col-4">
+          <label>Spécialité</label>
+          <div *ngFor="let specialite of specialites" class="p-field-checkbox">
+            <p-checkbox [(ngModel)]="offre.specialites"
+                        [inputId]="'spec'+specialite.id"
+                        [value]="specialite"
+                        value="specialite"
+                        name="specialite" required
+
+                       ></p-checkbox>
+            <label [for]="'spec'+specialite.id">{{specialite.libelle}}</label>
+          </div>
+        </div>
+
+
+    <div class="form-group col-4">
+          <label>Langues</label>
+          <div *ngFor="let langue of langues" class="p-field-checkbox">
+            <p-checkbox [(ngModel)]="offre.langues"
+                        [inputId]="'lng'+langue.id" [value]="langue"
+                        name="langue" required
+
+                      ></p-checkbox>
+            <label [for]="'lng'+langue.id">{{langue.libelle}}</label>
+          </div>
+        </div>
+        <div class="form-group col-4">
+          <label>Type postes</label>
+          <div *ngFor="let typePoste of typePostes"
+               class="p-field-checkbox">
+            <p-checkbox [(ngModel)]="offre.typePostes"
+                        [inputId]="'poste'+typePoste.id" [value]="typePoste"
+                        name="typePoste" required></p-checkbox>
+            <label [for]="'poste'+typePoste.id">{{typePoste.libelle}}</label>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="float-right col-2">
+
+        <button [disabled]="f.invalid" class="btn btn-success btn-block "
+        (click)="valider()">Valider</button>
+      </div>
+    </form>
+  </div>
+
+
+</app-layout>
