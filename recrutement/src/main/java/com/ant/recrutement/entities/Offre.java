@@ -1,8 +1,10 @@
 package com.ant.recrutement.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -14,11 +16,21 @@ public class Offre {
     private String titre;
     private String description;
     private String disponibiite;
-    private Integer niveauEtude;
-    private Integer niveauExperience;
+    private String niveauEtude;
+    private String niveauExperience;
+    @Temporal(TemporalType.DATE)
+    private Date dateCreation;
+    @Temporal(TemporalType.DATE)
+    private Date dateExpiration;
+    private boolean etat;
+
 
     @ManyToOne
     private Societe societe;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "offre")
+    private List<Candidature> candidatures;
 
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(name = "offre_specialites",
@@ -39,6 +51,8 @@ public class Offre {
             joinColumns = {@JoinColumn(name = "offre_id")},
             inverseJoinColumns = {@JoinColumn(name = "langue_id")})
     private List<Langue> langues;
+
+
 
 
 }

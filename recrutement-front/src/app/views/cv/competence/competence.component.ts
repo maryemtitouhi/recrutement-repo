@@ -4,9 +4,7 @@ import {Competence} from '../../../shared/model/competence';
 import {TypePoste} from '../../../shared/model/type-poste';
 import {CompetenceService} from '../../../shared/services/competence.service';
 import {ConfirmationService, MessageService} from 'primeng-lts/api';
-import {ActivatedRoute} from '@angular/router';
-import {DatePipe} from '@angular/common';
-import {TypePosteService} from '../../../shared/services/type-poste.service';
+
 
 @Component({
   selector: 'app-competence',

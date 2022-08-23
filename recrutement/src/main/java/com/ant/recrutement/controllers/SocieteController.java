@@ -4,7 +4,9 @@ import com.ant.recrutement.responses.MessageResponse;
 import com.ant.recrutement.services.SocieteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -22,5 +24,11 @@ public class SocieteController {
     public MessageResponse update(@RequestBody Societe societe) {
         return  societeService.update(societe);
     }
+
+    @PostMapping("/upload/logo/{societeId}")
+    public MessageResponse uploadLogo(@RequestParam("image") MultipartFile image, @PathVariable Integer societeId) throws IOException {
+        return societeService.uploadLogo(image, societeId);
+    }
+
 }
 

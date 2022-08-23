@@ -24,8 +24,14 @@ public class DocumentController {
     }
 
     @PostMapping("/upload/lettre/{cvId}")
-    public MessageResponse uploadLettre(@RequestParam("lettre") MultipartFile cv, @PathVariable Integer cvId) throws IOException {
-        return documentService.uploadLettre(cv, cvId);
+    public MessageResponse uploadLettre(@RequestParam("lettre") MultipartFile lettre, @PathVariable Integer cvId) throws IOException {
+        return documentService.uploadLettre(lettre, cvId);
+    }
+
+
+    @PostMapping("/upload/image/{cvId}")
+    public MessageResponse uploadImage(@RequestParam("image") MultipartFile image, @PathVariable Integer cvId) throws IOException {
+        return documentService.uploadImage(image, cvId);
     }
 
 

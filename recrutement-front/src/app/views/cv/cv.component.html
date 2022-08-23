@@ -1,54 +1,92 @@
-<p-tabView>
-  <p-tabPanel>
-    <ng-template pTemplate="header">
-      <i class="icon-user mr-2"></i>
-      <span>Information personnelle</span>
-    </ng-template>
-    <app-information  *ngIf="cv" [cv]="cv"></app-information>
-  </p-tabPanel>
-  <p-tabPanel>
-    <ng-template pTemplate="header">
-      <i class="icon-graduation mr-2"></i>
-      <span>Diplomes</span>
-    </ng-template>
-    <app-diplome *ngIf="cv" [cv]="cv"></app-diplome>
-  </p-tabPanel>
-  <p-tabPanel>
-    <ng-template pTemplate="header">
-      <i class="icon-eyeglass mr-2"> </i>
-      <span>Expériences</span>
-    </ng-template>
-    <app-experience  *ngIf="cv" [cv]="cv"></app-experience>
-  </p-tabPanel>
-  <p-tabPanel>
-    <ng-template pTemplate="header">
-      <i class="icon-badge mr-2"></i>
-      <span>Compétences</span>
-    </ng-template>
-    <app-competence *ngIf="cv" [cv]="cv"></app-competence>
-  </p-tabPanel>
-  <p-tabPanel>
-    <ng-template pTemplate="header">
-      <i class="icon-speech mr-2"></i>
-      <span>Langues</span>
-    </ng-template>
-    <app-niveau-langue *ngIf="cv" [cv]="cv"></app-niveau-langue>
-  </p-tabPanel>
+<app-layout>
 
-  <p-tabPanel>
-    <ng-template pTemplate="header">
-      <i class="cil cil-heart mr-2"></i>
-      <span>Centre d'intérêt</span>
-    </ng-template>
-    <app-centre-interet *ngIf="cv" [cv]="cv"></app-centre-interet>
-  </p-tabPanel>
 
-  <p-tabPanel>
-    <ng-template pTemplate="header">
-      <i class="cil-file mr-2" ></i>
-      <span>Documents</span>
-    </ng-template>
-    <app-document *ngIf="cv" [cv]="cv"></app-document>
+  <section  header class="section-hero overlay inner-page bg-image" style="background-image: url('assets/images/hero_1.jpg');" id="home-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7">
+          <h1 class="text-white font-weight-bold">Mon propre CV</h1>
 
-  </p-tabPanel>
-</p-tabView>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div body class="col-12">
+
+
+    <p-accordion>
+      <p-accordionTab >
+        <ng-template pTemplate="header">
+          <i class="icon-user mr-2"></i>
+          <span>Information personnelle</span>
+        </ng-template>
+        <app-information  *ngIf="cv" [cv]="cv"></app-information>
+      </p-accordionTab>
+
+      <p-accordionTab >
+
+        <ng-template pTemplate="header">
+          <i class="icon-graduation mr-2"></i>
+          <span>Diplomes</span>
+        </ng-template>
+        <app-diplome *ngIf="cv" [cv]="cv"></app-diplome>
+      </p-accordionTab>
+
+
+      <p-accordionTab>
+        <ng-template pTemplate="header">
+          <i class="icon-eyeglass mr-2"> </i>
+          <span>Expériences</span>
+        </ng-template>
+        <app-experience  *ngIf="cv" [cv]="cv"></app-experience>
+      </p-accordionTab>
+
+
+
+
+
+      <p-accordionTab>
+        <ng-template pTemplate="header">
+          <i class="icon-badge mr-2"></i>
+          <span>Compétences</span>
+        </ng-template>
+        <app-competence *ngIf="cv" [cv]="cv"></app-competence>
+      </p-accordionTab>
+      <p-accordionTab>
+        <ng-template pTemplate="header">
+          <i class="icon-speech mr-2"></i>
+          <span>Langues</span>
+        </ng-template>
+        <app-niveau-langue *ngIf="cv" [cv]="cv"></app-niveau-langue>
+      </p-accordionTab>
+
+      <p-accordionTab>
+        <ng-template pTemplate="header">
+          <i class="cil cil-heart mr-2"></i>
+          <span>Centre d'intérêt</span>
+        </ng-template>
+        <app-centre-interet *ngIf="cv" [cv]="cv"></app-centre-interet>
+      </p-accordionTab>
+
+      <p-accordionTab>
+        <ng-template pTemplate="header">
+          <i class="cil-file mr-2" ></i>
+          <span>Documents</span>
+        </ng-template>
+        <app-document *ngIf="cv" [cv]="cv"></app-document>
+
+      </p-accordionTab>
+
+
+    </p-accordion>
+
+
+
+
+
+
+  </div>
+
+
+</app-layout>

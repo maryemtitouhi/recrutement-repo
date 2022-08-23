@@ -1,5 +1,5 @@
 <app-header
-  [navbarBrandRouterLink]="['/dashboard']"
+  [navbarBrandRouterLink]="['/home']"
   [fixed]="true"
   [navbarBrandFull]="{src: 'assets/img/brand/logo.svg', width: 89, height: 25, alt: 'CoreUI Logo'}"
   [navbarBrandMinimized]="{src: 'assets/img/brand/sygnet.svg', width: 30, height: 30, alt: 'CoreUI Logo'}"
@@ -17,11 +17,9 @@
       <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
         <div class="dropdown-header text-center"><strong>Paramètres</strong></div>
 
-        <a class="dropdown-item" routerLink="/user/profil"
-           *ngxPermissionsOnly="['ROLE_CANDIDAT', 'ROLE_SOCIETE']"><i class="fa fa-user"></i> Mon Profil</a>
+
         <a class="dropdown-item"
-           routerLink="/user/change-password"
-        ><i class="fa fa-wrench"></i> Mot de passe</a>
+           routerLink="/admin/user/change-password"><i class="fa fa-wrench"></i> Mot de passe</a>
 
         <div class="divider"></div>
 

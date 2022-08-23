@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface ExperienceRepository extends JpaRepository<Experience, Integer> {
     List<Experience> findByCv(Cv cv);
+    List<Experience> findByCvOrderByDebutDesc(Cv cv);
 }

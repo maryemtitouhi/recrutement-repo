@@ -40,7 +40,7 @@ public class ExperienceService {
     public List<Experience> findByCv(Integer idCv) {
         Cv cv = new Cv();
         cv.setId(idCv);
-        return experienceRepository.findByCv(cv);
+        return experienceRepository.findByCvOrderByDebutDesc(cv);
     }
 
 }

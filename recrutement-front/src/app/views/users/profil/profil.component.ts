@@ -12,6 +12,7 @@ import {CandidatService} from '../../../shared/services/candidat.service';
 import {SocieteService} from '../../../shared/services/societe.service';
 import {NgxPermissionsService} from 'ngx-permissions';
 import {DatePipe} from '@angular/common';
+import {base64ToArrayBuffer} from '../../cv/document/document.component';
 
 @Component({
   selector: 'app-profil',
@@ -25,7 +26,7 @@ export class ProfilComponent implements OnInit {
   countries: Pays[];
   villes: Ville[];
   country: Pays;
-
+  logoName = 'Choisir un logo';
   constructor(private candidatService: CandidatService,
               private societeService: SocieteService,
               private messageService: MessageService,
@@ -92,7 +93,22 @@ export class ProfilComponent implements OnInit {
     });
   }
 
+  selectImage(event: any) {
+    const file = event.target.files[0];
+    this.logoName = file.name;
+    this.societeService.uploadLogo(file, this.societe.id).subscribe(res => {
+      if (res.success) {
+        this.messageService.add({severity: 'success', summary: res.message, detail: res.detail});
 
+        this.logoName = 'Choisir  une image';
+      } else {
+        this.messageService.add({severity: 'warn', summary: res.message, detail: res.detail});
+      }
+    }, ex => {
+      this.messageService.add({severity: 'error', summary: 'Erreur', detail: 'Opération non effectuée'});
+      console.log(ex);
+    });
+  }
   compareFn(c1: any, c2: any): boolean {
     return c1 && c2 ? c1.id === c2.id : c1 === c2;
   }

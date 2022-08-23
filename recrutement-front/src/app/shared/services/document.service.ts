@@ -28,5 +28,10 @@ export class DocumentService {
     formData.append('lettre', lettre);
     return this.httpClient.post(this.url + '/upload/lettre/' + cvId, formData);
   }
+  public uploadImage(image: File, cvId): Observable<any> {
+    const formData = new FormData();
+    formData.append('image', image);
+    return this.httpClient.post(this.url + '/upload/image/' + cvId, formData);
+  }
 
 }

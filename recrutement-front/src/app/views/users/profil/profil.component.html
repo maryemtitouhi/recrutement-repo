@@ -1,3 +1,20 @@
+<app-layout>
+
+
+  <section  header class="section-hero overlay inner-page bg-image" style="background-image: url('assets/images/hero_1.jpg');" id="home-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7">
+          <h1 class="text-white font-weight-bold">Mon profil</h1>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div body class="col-12">
+
+
 <form #f1="ngForm" (ngSubmit)="f1. form. valid && updateCandidat()"
       *ngxPermissionsOnly="['ROLE_CANDIDAT']">
 
@@ -7,7 +24,7 @@
 
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text"><i class="icon-user"></i></span>
+          <span class="input-group-text"><i class="icon-user-o"></i></span>
         </div>
         <input #nom="ngModel"
                [(ngModel)]="candidat.nom"
@@ -18,7 +35,7 @@
 
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text"><i class="icon-user"></i></span>
+          <span class="input-group-text"><i class="icon-user-o"></i></span>
         </div>
         <input #prenom="ngModel" [(ngModel)]="candidat.prenom"
                class="form-control  {{f1.submitted && prenom.invalid?'is-invalid' : '' }}" name="prenom"
@@ -29,7 +46,7 @@
 
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text"><i class="icon-calendar"></i></span>
+          <span class="input-group-text"><i class="icon-calendar-o"></i></span>
         </div>
         <input #dateNaissance="ngModel"
                [(ngModel)]="candidat.dateNaissance"
@@ -41,7 +58,7 @@
 
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text"><i class="icon-phone"></i></span>
+          <span class="input-group-text"><i class="icon-phone2"></i></span>
         </div>
         <input #telephone="ngModel"
                [(ngModel)]="candidat.telephone"
@@ -63,7 +80,7 @@
 
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text"><i class="icon-flag"></i></span>
+          <span class="input-group-text"><i class="icon-flag-o"></i></span>
         </div>
         <select #pays="ngModel"
                 (ngModelChange)="getVillesByPays(country.id)"
@@ -89,7 +106,7 @@
       </div>
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text"><i class="icon-location-pin"></i></span>
+          <span class="input-group-text"><i class="icon-location_city"></i></span>
         </div>
         <input #adresse="ngModel" [(ngModel)]="candidat.addresse"
                class="form-control {{f1.submitted && adresse.invalid?'is-invalid' : '' }}" name="addresse"
@@ -149,7 +166,7 @@
 
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text"><i class="icon-folder"></i></span>
+          <span class="input-group-text"><i class="icon-folder-o"></i></span>
         </div>
         <input #matriculeFiscal="ngModel" [(ngModel)]="societe.matriculeFiscal"
                class="form-control {{f1.submitted && matriculeFiscal.invalid?'is-invalid' : '' }}"
@@ -186,7 +203,7 @@
 
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text"><i class="icon-paper-clip"></i></span>
+          <span class="input-group-text"><i class="icon-paper-plane-o"></i></span>
         </div>
         <input [(ngModel)]="societe.siteWeb"
                class="form-control "
@@ -196,7 +213,7 @@
 
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text"><i class="icon-phone"></i></span>
+          <span class="input-group-text"><i class="icon-phone2"></i></span>
         </div>
         <input #telephone="ngModel"
                [(ngModel)]="societe.telephone"
@@ -218,7 +235,7 @@
 
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text"><i class="icon-flag"></i></span>
+          <span class="input-group-text"><i class="icon-flag-o"></i></span>
         </div>
         <select #pays="ngModel"
                 (ngModelChange)="getVillesByPays(country.id)"
@@ -246,7 +263,7 @@
 
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text"><i class="icon-location-pin"></i></span>
+          <span class="input-group-text"><i class="icon-location_city"></i></span>
         </div>
         <input #adresse="ngModel" [(ngModel)]="societe.addresse"
                class="form-control {{f1.submitted && adresse.invalid?'is-invalid' : '' }}" name="addresse"
@@ -276,6 +293,21 @@
         </div>
       </div>
 
+
+      <div class="fom-group">
+        <label>Logo:</label>
+        <div class="input-group">
+
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" accept="image/*"
+                   (change)="selectImage($event)">
+            <label class="custom-file-label" >{{logoName}}</label>
+          </div>
+        </div>
+      </div>
+
+
+
     </div>
     <div class="card-footer">
       <div class="row pull-right">
@@ -284,3 +316,5 @@
     </div>
   </div>
 </form>
+  </div>
+</app-layout>

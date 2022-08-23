@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface DiplomeRepository extends JpaRepository<Diplome, Integer> {
     List<Diplome> findByCv(Cv cv);
+    List<Diplome> findByCvOrderByDebutDesc(Cv cv);
 }

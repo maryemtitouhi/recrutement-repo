@@ -10,7 +10,7 @@ import java.util.Date;
 
 @Entity
 @Data
-public class Candiadature {
+public class Candidature {
     @EmbeddedId
     private CandidatureId id;
     private Date dateCandidature;

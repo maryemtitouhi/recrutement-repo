@@ -16,7 +16,10 @@ export class DocumentComponent implements OnInit {
   display = false;
 
   cvName = 'Choisir un CV';
+
   cvDoc: Document;
+  imageName = 'Choisir une image';
+  imageDoc: Document;
   lettreName = 'Choisir une lettre de motivation';
   lettreDoc: Document;
 
@@ -46,6 +49,26 @@ export class DocumentComponent implements OnInit {
   }
 
 
+
+  selectImage(event: any) {
+    const file = event.target.files[0];
+    this.imageName = file.name;
+    this.documentService.uploadImage(file, this.cv.id).subscribe(res => {
+      if (res.success) {
+        this.messageService.add({severity: 'success', summary: res.message, detail: res.detail});
+        this.getByCv();
+        this.imageName = 'Choisir  une image';
+      } else {
+        this.messageService.add({severity: 'warn', summary: res.message, detail: res.detail});
+      }
+    }, ex => {
+      this.messageService.add({severity: 'error', summary: 'Erreur', detail: 'Opération non effectuée'});
+      console.log(ex);
+    });
+  }
+
+
+
   selectLettre(event: any) {
     const file = event.target.files[0];
     this.lettreName = file.name;
@@ -69,8 +92,11 @@ export class DocumentComponent implements OnInit {
         if (el.typeDocument === 'CV') {
           this.cvDoc = el;
         }
-        if (el.typeDocument === 'LETTRE_MOTIVATION') {
+       else if (el.typeDocument === 'LETTRE_MOTIVATION') {
           this.lettreDoc = el;
+        }
+        else if (el.typeDocument === 'IMAGE') {
+          this.imageDoc = el;
         }
       });
     }, ex => console.log(ex));
@@ -88,7 +114,11 @@ export class DocumentComponent implements OnInit {
     const file = new Blob([arrayBuffer], {type: this.lettreDoc.contentType});
     FileSaver.saveAs(file, this.lettreDoc.libelle);
   }
-
+  downloadImage() {
+    const arrayBuffer = base64ToArrayBuffer(this.imageDoc.fichier);
+    const file = new Blob([arrayBuffer], {type: this.imageDoc.contentType});
+    FileSaver.saveAs(file, this.imageDoc.libelle);
+  }
 }
 
 export function base64ToArrayBuffer(base64: string) {

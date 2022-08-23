@@ -8,13 +8,13 @@ export const navItems: any[] = [
   },
   {
     name: 'Sociétés',
-    url: '/user/societe',
+   url: '/admin/user/societe',
     icon: 'fa fa-building-o fa-lg',
     roles: ['ROLE_ADMIN']
   },
   {
     name: 'Candidats',
-    url: '/user/candidat',
+   url: '/admin/user/candidat',
     icon: 'icon-people',
     roles: ['ROLE_ADMIN']
   },
@@ -25,31 +25,31 @@ export const navItems: any[] = [
   },
   {
     name: 'Spécialités',
-    url: '/settings/specialite',
+   url: '/admin/settings/specialite',
     icon: 'icon-star',
     roles: ['ROLE_ADMIN']
   },
   {
     name: 'Type Postes',
-    url: '/settings/type-poste',
+   url: '/admin/settings/type-poste',
     icon: 'icon-layers',
     roles: ['ROLE_ADMIN']
   },
   {
     name: 'Pays et villes',
-    url: '/settings/pays',
+   url: '/admin/settings/pays',
     icon: 'icon-flag',
     roles: ['ROLE_ADMIN']
   },
   {
     name: 'Langues',
-    url: '/settings/langue',
+   url: '/admin/settings/langue',
     icon: 'fa fa-language fa-lg',
     roles: ['ROLE_ADMIN']
   },
   {
     name: 'Mon CV',
-    url: '/cv',
+   url: '/admin/cv',
     icon: 'cil-file',
     roles: ['ROLE_CANDIDAT']
   },

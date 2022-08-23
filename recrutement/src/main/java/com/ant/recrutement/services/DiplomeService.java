@@ -41,7 +41,7 @@ public class DiplomeService {
     public List<Diplome> findByCv(Integer idCv) {
         Cv cv = new Cv();
         cv.setId(idCv);
-        return diplomeRepository.findByCv(cv);
+        return diplomeRepository.findByCvOrderByDebutDesc(cv);
     }
 
 }

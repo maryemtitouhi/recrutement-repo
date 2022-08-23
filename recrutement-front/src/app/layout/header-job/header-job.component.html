@@ -1,0 +1,51 @@
+<header class="site-navbar mt-3">
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <div class="site-logo col-6"><img width="120" height="70" src="assets/img/brand/LogoANT.png"></div>
+
+      <nav class="mx-auto site-navigation">
+        <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
+          <li><a routerLink="/home" class="nav-link">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li class="has-children">
+            <a href="job-listings.html">Job Listings</a>
+            <ul class="dropdown">
+              <li><a href="job-single.html">Job Single</a></li>
+              <li><a href="post-job.html">Post a Job</a></li>
+            </ul>
+          </li>
+          <li class="has-children"  *ngxPermissionsOnly="['ROLE_CANDIDAT']"><a  >Mon CV</a>
+            <ul class="dropdown">
+              <li><a routerLink="/cv">Editer cv</a></li>
+              <li><a  routerLink="/cv/view">Visualiser cv</a></li>
+            </ul>
+          </li>
+          <li class="has-children"  *ngxPermissionsOnly="['ROLE_CANDIDAT', 'ROLE_SOCIETE']">
+            <a >Paramètrages</a>
+            <ul class="dropdown">
+              <li><a routerLink="/user/profil">Mon profil</a></li>
+              <li><a routerLink="/change-password">Changer mot de passe</a></li>
+            </ul>
+          </li>
+
+          <li><a  routerLink="/admin" *ngxPermissionsOnly="['ROLE_ADMIN']" >Espace Admin</a></li>
+
+        </ul>
+      </nav>
+
+      <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
+        <div class="ml-auto">
+          <button *ngIf="isLoggedIn" (click)="logout()"  class="btn btn-outline-white border-width-2 d-none d-lg-inline-block">
+            <span class="mr-2 icon-sign-out"></span>Déconnexion</button>
+          <button routerLink="/register" *ngIf="!isLoggedIn"  class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-sign-in"></span>S'inscrir</button>
+
+          <button  routerLink="/login" *ngIf="!isLoggedIn" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-lock_outline"></span>S'authentifier</button>
+        </div>
+        <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3 active"><span class="icon-menu h3 m-0 p-0 mt-2"></span></a>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+

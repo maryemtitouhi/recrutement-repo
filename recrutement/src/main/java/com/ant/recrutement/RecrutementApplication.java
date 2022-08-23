@@ -15,19 +15,20 @@ public class RecrutementApplication  implements CommandLineRunner {
     private AdminRepository adminRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+
     public static void main(String[] args) {
         SpringApplication.run(RecrutementApplication.class, args);
     }
 
     @Override
     public void run(String... args) throws Exception {
-        Admin admin =new Admin();
+        Admin admin = new Admin();
         admin.setEmail("admin@gmail.com");
 
         admin.setPassword(passwordEncoder.encode("123"));
         admin.setEnabled(true);
 
-      //  adminRepository.save(admin);
+        // adminRepository.save(admin);
 
     }
 }

@@ -21,4 +21,11 @@ export class SocieteService {
   update(societe: Societe): Observable<any> {
     return this.httpClient.put(this.url, societe);
   }
+
+
+  public uploadLogo(image: File, societeId): Observable<any> {
+    const formData = new FormData();
+    formData.append('image', image);
+    return this.httpClient.post(this.url + '/upload/logo/' + societeId, formData);
+  }
 }

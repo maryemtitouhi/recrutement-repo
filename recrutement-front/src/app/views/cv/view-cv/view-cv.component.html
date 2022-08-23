@@ -1,0 +1,179 @@
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+
+<app-layout>
+
+
+  <section  header class="section-hero overlay inner-page bg-image" style="background-image: url('assets/images/hero_1.jpg');" id="home-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7">
+          <h1 class="text-white font-weight-bold">Mon CV</h1>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div body>
+
+
+    <div class="container" *ngIf="cv">
+      <div class="row justify-content-center">
+        <div class="col-md-9">
+          <div class="row align-items-center">
+            <div class="col-lg-5">
+              <div class="resume-base bg-success user-dashboard-info-box p-4">
+                <div class="profile">
+                  <div class="jobster-user-info">
+                    <div class="profile-avatar" *ngIf="imageDoc">
+                      <img class="img-fluid " style="width: 115px; height: 115px;"  src="data:image/png;base64,{{imageDoc.fichier}}" alt="">
+                    </div>
+                    <div class="profile-avatar-info mt-3">
+                      <h5 class="text-white">{{cv?.titre}} </h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="about-candidate border-top">
+                  <div class="candidate-info">
+                    <h6 class="text-white">Nom:</h6>
+                    <p class="text-white">{{cv?.candidat?.nom}}  {{cv?.candidat?.prenom}}</p>
+                  </div>
+                  <div class="candidate-info">
+                    <h6 class="text-white">Email:</h6>
+                    <p class="text-white">{{cv?.candidat?.email}}</p>
+                  </div>
+                  <div class="candidate-info">
+                    <h6 class="text-white">Téléphone:</h6>
+                    <p class="text-white">{{cv?.candidat?.telephone}}</p>
+                  </div>
+                  <div class="candidate-info">
+                    <h6 class="text-white">Date de naissance</h6>
+                    <p class="text-white">{{cv?.candidat?.dateNaissance | date: 'dd/MM/yyyy'}}</p>
+                  </div>
+                  <div class="candidate-info">
+                    <h6 class="text-white">Addresse:</h6>
+                    <p class="text-white">{{cv?.candidat?.addresse}} -  {{cv?.candidat?.ville?.libelle}} ,{{cv?.candidat?.ville?.pays?.libelle}}   </p>
+                  </div>
+                  <div class="candidate-info">
+                    <h6 class="text-white">Niveau d'étude:</h6>
+                    <p class="text-white">{{cv?.niveauEtude}}</p>
+                  </div>
+
+                  <div class="candidate-info">
+                    <h6 class="text-white">Années d'experience:</h6>
+                    <p class="text-white">{{cv?.anneeExperience}}</p>
+                  </div>
+                </div>
+                <div class="mt-0" *ngIf="niveauLangues && niveauLangues?.length>0">
+                  <h5 class="text-white">Langues:</h5>
+                  <div class="progress bg-dark" *ngFor="let niv of niveauLangues">
+                    <div class="progress-bar bg-white" role="progressbar" style="width:{{niv.niveau * 20}}%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">
+                      <div class="progress-bar-title text-white">{{niv?.langue?.libelle}}</div>
+                      <span class="progress-bar-number text-white">{{niv.niveau * 20}}%</span>
+                    </div>
+                  </div>
+
+
+
+                </div>
+
+                <div class="mt-0" *ngIf="centreInterets && centreInterets?.length>0">
+                  <h5 class="text-white">Centre d'intérêt:</h5>
+                  <div  *ngFor="let centre of centreInterets">
+
+                      <div class="progress-bar-title text-white">{{centre?.libelle}}</div>
+
+                  </div>
+
+
+
+                </div>
+
+
+              </div>
+            </div>
+            <div class="col-lg-7">
+              <div class="resume-experience">
+                <div class="timeline-box" *ngIf="diplomes && diplomes?.length>0">
+                  <h5 class="resume-experience-title">Diplômes et Formations:</h5>
+                  <div class="jobster-candidate-timeline" >
+                    <div class="jobster-timeline-item mb-0" *ngFor="let diplome of diplomes">
+                      <div class="jobster-timeline-cricle">
+                        <i class="far fa-circle"></i>
+                      </div>
+                      <div class="jobster-timeline-info">
+                        <div class="dashboard-timeline-info">
+                          <span class="jobster-timeline-time">{{diplome.debut | date: 'MM/yyyy'}} - {{diplome.fin | date: 'MM/yyyy'}} </span>
+                          <h6 class="mb-2">{{diplome.titre}}</h6>
+                          <span>- {{diplome.etablissement}}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="timeline-box mt-4" *ngIf="experiences && experiences?.length>0">
+                  <h5 class="resume-experience-title">Experience professionnel:</h5>
+                  <div class="jobster-candidate-timeline" >
+                    <div class="jobster-timeline-item mb-0" *ngFor="let experience of experiences">
+                      <div class="jobster-timeline-cricle">
+                        <i class="far fa-circle"></i>
+                      </div>
+                      <div class="jobster-timeline-info">
+                        <div class="dashboard-timeline-info">
+                          <span class="jobster-timeline-time">{{experience.debut | date: 'MM/yyyy'}} - {{experience.fin | date: 'MM/yyyy'}} </span>
+                          <h6 class="mb-2">{{experience.titre}}</h6>
+                          <span>- {{experience.societe}}</span><br>
+                          <span>- Type Poste: {{experience.typePoste.libelle}}</span>
+                          <p class="mt-2">{{experience.description}}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div class="timeline-box mt-4" *ngIf="competences && competences?.length>0">
+                  <h5 class="resume-experience-title">Compétences:</h5>
+              <!--    <div class="jobster-candidate-timeline" >
+                    <div class="jobster-timeline-item mb-0" *ngFor="let competence of competences">
+                      <div class="jobster-timeline-cricle">
+                        <i class="far fa-circle"></i>
+                      </div>
+                      <div class="jobster-timeline-info">
+                        <div class="dashboard-timeline-info">
+                          <span class="jobster-timeline-time">{{experience.debut | date: 'MM/yyyy'}} - {{experience.fin | date: 'MM/yyyy'}} </span>
+                          <h6 class="mb-2">{{experience.titre}}</h6>
+                          <span>- {{experience.societe}}</span><br>
+                          <span>- Poste: {{experience.typePoste.libelle}}</span>
+                          <p class="mt-2">{{experience.description}}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>-->
+
+                  <div class="progress bg-dark" *ngFor="let competence of competences">
+                    <div class="progress-bar bg-success" role="progressbar" style="width:{{competence.niveau * 20}}%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">
+                      <div class="progress-bar-title ">{{competence?.titre}} :</div>
+                      <span class="progress-bar-number">{{competence.niveau * 20}}%</span>
+                      <span class="mt-4 text-left text-dark">{{competence.description}}</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+</app-layout>
+
+

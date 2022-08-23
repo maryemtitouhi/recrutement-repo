@@ -19,9 +19,15 @@ export class LoginComponent {
 
   authenticate(): void {
     this.authService.authenticate(this.user).subscribe(res => {
-      this.router.navigate(['/']);
+
       localStorage.setItem('token', res.token);
       localStorage.setItem('currentUser', JSON.stringify(res.user));
+      const role = this.authService.getRole();
+      if(role === 'ROLE_ADMIN') {
+        this.router.navigate(['/admin']);
+      } else {
+        this.router.navigate(['/home']);
+      }
     }, ex => {
       this.messageService
         .add({severity: 'error', summary: 'Erreur d\'authentification', detail: 'Merci de vérifier votre email ou mot de passe'});

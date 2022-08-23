@@ -53,6 +53,18 @@ import {TabViewModule} from 'primeng-lts/tabview';
 import { NiveauLangueComponent } from './views/cv/niveau-langue/niveau-langue.component';
 import { InformationComponent } from './views/cv/information/information.component';
 import {RatingModule} from 'primeng-lts/rating';
+import { LayoutComponent } from './layout/layout.component';
+
+import { HeaderJobComponent } from './layout/header-job/header-job.component';
+import { FooterJobComponent } from './layout/footer-job/footer-job.component';
+import { HomeComponent } from './views/home/home.component';
+import { HeaderTitleComponent } from './layout/header-title/header-title.component';
+import { ChangePasswordCandidatSocieteComponent } from './views/users/change-password-candidat-societe/change-password-candidat-societe.component';
+import {AccordionModule} from 'primeng-lts/accordion';
+import { ViewCvComponent } from './views/cv/view-cv/view-cv.component';
+import { OffreComponent } from './views/offre/offre.component';
+import { AddEditOffreComponent } from './views/offre/add-edit-offre/add-edit-offre.component';
+
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -86,7 +98,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     InputSwitchModule,
     NgxPermissionsModule.forRoot(),
     TabViewModule,
-    RatingModule
+    RatingModule,
+    AccordionModule
   ],
   declarations: [
     AppComponent,
@@ -109,7 +122,18 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     CentreInteretComponent,
     CompetenceComponent,
     NiveauLangueComponent,
-    InformationComponent
+    InformationComponent,
+    LayoutComponent,
+
+
+     HeaderJobComponent,
+       FooterJobComponent,
+       HomeComponent,
+       HeaderTitleComponent,
+       ChangePasswordCandidatSocieteComponent,
+       ViewCvComponent,
+       OffreComponent,
+       AddEditOffreComponent
 
   ],
   providers: [

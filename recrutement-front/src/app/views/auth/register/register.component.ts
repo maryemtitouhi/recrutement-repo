@@ -16,11 +16,12 @@ import {Ville} from '../../../shared/model/ville';
 export class RegisterComponent implements OnInit {
   candidat = new Candidat();
   societe = new Societe();
-  typeRegister: string;
   countries: Pays[];
   villes: Ville[];
   country: Pays;
   confirmPassword: any;
+  selectedCountry: Pays;
+  confirmPassword2: any;
   constructor(private registerService: RegisterService,
               private messageService: MessageService,
               private activatedRoute: ActivatedRoute,
@@ -30,7 +31,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-     this.typeRegister = this.activatedRoute.snapshot.paramMap.get('type');
+
     this.getAllPays();
   }
 

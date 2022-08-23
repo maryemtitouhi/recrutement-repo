@@ -63,6 +63,28 @@ public class DocumentService {
         return  new MessageResponse(true, "Succès", "Opération effectuée");
     }
 
+
+
+    public MessageResponse uploadImage(MultipartFile file, Integer cvId) throws IOException {
+
+        Cv cv = cvRepository.findById(cvId).orElse(null);
+
+        if(cv== null){
+            return  new MessageResponse(false, "Attention", "Cv n'existe pas");
+        }
+
+        Document document = documentRepository.findByCvAndTypeDocument(cv, TypeDocument.IMAGE)
+                .orElse(new Document());
+        document.setFichier(file.getBytes());
+        document.setContentType(file.getContentType());
+        document.setCv(cv);
+        document.setTypeDocument(TypeDocument.IMAGE);
+        document.setLibelle("IMAGE_"+ cv.getCandidat().getNom() + "_"+ cv.getCandidat().getPrenom());
+
+        documentRepository.save(document);
+        return  new MessageResponse(true, "Succès", "Opération effectuée");
+    }
+
     public List<Document> findByCv(Integer idCv) {
         Cv cv = new Cv();
         cv.setId(idCv);

@@ -18,13 +18,23 @@ import {AuthGuard} from './shared/guards/auth.guard';
 import {ProfilComponent} from './views/users/profil/profil.component';
 import {ChangePasswordComponent} from './views/users/change-password/change-password.component';
 import {CvComponent} from './views/cv/cv.component';
+import {LayoutComponent} from './layout/layout.component';
+import {HomeComponent} from './views/home/home.component';
+import {ChangePasswordCandidatSocieteComponent} from './views/users/change-password-candidat-societe/change-password-candidat-societe.component';
+import {ViewCvComponent} from './views/cv/view-cv/view-cv.component';
+import {OffreComponent} from './views/offre/offre.component';
+import {AddEditOffreComponent} from './views/offre/add-edit-offre/add-edit-offre.component';
 
 export const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
-  },
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: 'home', component: HomeComponent},
+  {path: 'change-password', component: ChangePasswordCandidatSocieteComponent, canActivate: [AuthGuard]},
+  {path: 'user/profil', component: ProfilComponent , canActivate: [AuthGuard]},
+  {path: 'cv', component: CvComponent , canActivate: [AuthGuard]},
+  {path: 'cv/view', component: ViewCvComponent , canActivate: [AuthGuard]},
+  {path: 'offre', component: OffreComponent , canActivate: [AuthGuard]},
+  {path: 'offre/new', component: AddEditOffreComponent , canActivate: [AuthGuard]},
+  {path: 'offre/edit/:id', component: AddEditOffreComponent , canActivate: [AuthGuard]},
   {
     path: 'login',
     component: LoginComponent,
@@ -33,14 +43,14 @@ export const routes: Routes = [
     }
   },
   {
-    path: 'register/:type',
+    path: 'register',
     component: RegisterComponent,
     data: {
       title: 'Register Page'
     }
   },
   {
-    path: '',
+    path: 'admin',
     component: DefaultLayoutComponent,
     canActivate: [AuthGuard],
     children: [
@@ -51,9 +61,9 @@ export const routes: Routes = [
       {path: 'settings/langue', component: LangueComponent},
       {path: 'user/candidat', component: CandidatComponent},
       {path: 'user/societe', component: SocieteComponent},
-      {path: 'user/profil', component: ProfilComponent},
+
       {path: 'user/change-password', component: ChangePasswordComponent},
-      {path: 'cv', component: CvComponent},
+
     ]
   }
 ];

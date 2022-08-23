@@ -1,5 +1,5 @@
 package com.ant.recrutement.enums;
 
 public enum TypeDocument {
-    CV, LETTRE_MOTIVATION
+    CV, LETTRE_MOTIVATION, IMAGE
 }
