@@ -14,8 +14,8 @@ export class OffreService {
   constructor(private httpClient: HttpClient) {
   }
 
-  public getAll(): Observable<Offre[]> {
-    return this.httpClient.get<Offre[]>(this.url + '/available');
+  public getAll(searchRequest: any): Observable<Offre[]> {
+    return this.httpClient.post<Offre[]>(this.url + '/available' , searchRequest);
   }
 
   public getBySociete(id: any): Observable<Offre[]> {
@@ -28,8 +28,13 @@ export class OffreService {
     formData.append('offre', offre);
     return this.httpClient.post(this.url , formData);
   }
-  public update(offre: Offre): Observable<any> {
-    return this.httpClient.put(this.url , offre);
+  public update(file: File , offre: any): Observable<any> {
+    const formData = new FormData();
+    if (file) {
+      formData.append('image', file);
+    }
+    formData.append('offre', offre);
+    return this.httpClient.put(this.url , formData);
   }
   public delete(id: any): Observable<any> {
     return this.httpClient.delete(this.url + '/' + id);

@@ -1,6 +1,7 @@
 package com.ant.recrutement.controllers;
 
 import com.ant.recrutement.entities.Offre;
+import com.ant.recrutement.requests.SearchRequest;
 import com.ant.recrutement.responses.MessageResponse;
 import com.ant.recrutement.services.OffreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class OffreController {
     }
 
     @PutMapping
-    public MessageResponse update(@RequestPart("image")MultipartFile file, @RequestPart("offre") Offre offre) throws IOException {
+    public MessageResponse update(@RequestPart(name="image", required = false)MultipartFile file, @RequestPart("offre") Offre offre) throws IOException {
         return offreService.update(file, offre);
     }
 
@@ -43,9 +44,9 @@ public class OffreController {
     public Offre findById(@PathVariable Integer id){
         return offreService.findById(id);
     }
-    @GetMapping("/available")
-    public List<Offre> findAvailable(){
-        return offreService.findAvailable();
+    @PostMapping("/available")
+    public List<Offre> findAvailable(@RequestBody SearchRequest searchRequest){
+        return offreService.findAvailable(searchRequest);
     }
 
     @GetMapping("/etat/{id}")

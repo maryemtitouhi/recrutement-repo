@@ -6,4 +6,5 @@ export class Societe extends User {
   registreCommerce: string;
   taille: string;
   siteWeb: string;
+  logo: any;
 }
