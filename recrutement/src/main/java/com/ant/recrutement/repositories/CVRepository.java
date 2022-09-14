@@ -6,4 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CVRepository extends JpaRepository<Cv, Integer> {
     Cv findByCandidat(Candidat candidat);
+
+    Cv findByCandidat_id(Integer candidatId);
 }

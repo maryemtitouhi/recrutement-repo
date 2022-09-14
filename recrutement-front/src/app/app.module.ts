@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {PerfectScrollbarConfigInterface, PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
@@ -42,7 +42,7 @@ import {JwtInterceptorService} from './shared/interceptors/jwt-interceptor.servi
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { ProfilComponent } from './views/users/profil/profil.component';
 import { ChangePasswordComponent } from './views/users/change-password/change-password.component';
-import {DatePipe} from '@angular/common';
+import {DatePipe, registerLocaleData} from '@angular/common';
 import { CvComponent } from './views/cv/cv.component';
 import { ExperienceComponent } from './views/cv/experience/experience.component';
 import { DiplomeComponent } from './views/cv/diplome/diplome.component';
@@ -65,11 +65,13 @@ import { ViewCvComponent } from './views/cv/view-cv/view-cv.component';
 import { OffreComponent } from './views/offre/offre.component';
 import { AddEditOffreComponent } from './views/offre/add-edit-offre/add-edit-offre.component';
 import {CheckboxModule} from 'primeng-lts/checkbox';
-
+import { OffreDetailComponent } from './views/offre/offre-detail/offre-detail.component';
+import localeFr from '@angular/common/locales/fr';
+import { CandidatureComponent } from './views/candidature/candidature.component';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
-
+registerLocaleData(localeFr, 'fr');
 
 @NgModule({
   imports: [
@@ -135,7 +137,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
        ChangePasswordCandidatSocieteComponent,
        ViewCvComponent,
        OffreComponent,
-       AddEditOffreComponent
+       AddEditOffreComponent,
+       OffreDetailComponent,
+       CandidatureComponent,
 
   ],
   providers: [
@@ -143,7 +147,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MessageService,
     ConfirmationService,
     DatePipe,
-    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true},
+    {provide: LOCALE_ID, useValue: 'fr' }
   ],
   bootstrap: [AppComponent]
 })

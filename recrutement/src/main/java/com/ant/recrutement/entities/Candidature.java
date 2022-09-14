@@ -14,6 +14,7 @@ public class Candidature {
     @EmbeddedId
     private CandidatureId id;
     private Date dateCandidature;
+    private Date dateEntretien;
     private String etat;
 
     @ManyToOne

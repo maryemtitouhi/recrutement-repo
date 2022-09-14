@@ -99,7 +99,7 @@
         <ul class="job-listings mb-5">
           <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center"
               *ngFor="let offre of offres">
-            <a href="job-single.html"></a>
+            <a routerLink="/offre/detail/{{offre.id}}"></a>
             <div class="job-listing-logo">
               <img style="width: 150px; height: 150px" [src]="offre.societe.logo? 'data:image/png;base64,'+offre.societe.logo : '/assets/images/empty.png'" alt="Free Website Template by Free-Template.co" class="img-fluid">
             </div>

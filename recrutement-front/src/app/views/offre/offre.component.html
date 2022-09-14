@@ -24,7 +24,7 @@
           <th>Niveau d'éxperience</th>
           <th>Disponibilité</th>
           <th>Etat</th>
-          <th width="12%">Action</th>
+          <th width="15%">Action</th>
 
         </tr>
       </ng-template>
@@ -53,6 +53,12 @@
                     tooltipPosition="top"
                     type="button"></button>
 
+
+            <button class="p-button-rounded p-button-primary p-button-outlined" icon="pi pi-file" pButton pRipple
+                    pTooltip="Candidature"
+                    routerLink="candidature/{{row.id}}"
+                    tooltipPosition="top"
+                    type="button"></button>
 
           </td>
         </tr>

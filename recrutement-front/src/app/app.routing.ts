@@ -24,6 +24,8 @@ import {ChangePasswordCandidatSocieteComponent} from './views/users/change-passw
 import {ViewCvComponent} from './views/cv/view-cv/view-cv.component';
 import {OffreComponent} from './views/offre/offre.component';
 import {AddEditOffreComponent} from './views/offre/add-edit-offre/add-edit-offre.component';
+import {OffreDetailComponent} from './views/offre/offre-detail/offre-detail.component';
+import {CandidatureComponent} from './views/candidature/candidature.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -35,6 +37,9 @@ export const routes: Routes = [
   {path: 'offre', component: OffreComponent , canActivate: [AuthGuard]},
   {path: 'offre/new', component: AddEditOffreComponent , canActivate: [AuthGuard]},
   {path: 'offre/edit/:id', component: AddEditOffreComponent , canActivate: [AuthGuard]},
+  {path: 'candidature', component: CandidatureComponent , canActivate: [AuthGuard]},
+  {path: 'offre/candidature/:id', component: CandidatureComponent , canActivate: [AuthGuard]},
+  {path: 'offre/detail/:id', component: OffreDetailComponent },
   {
     path: 'login',
     component: LoginComponent,

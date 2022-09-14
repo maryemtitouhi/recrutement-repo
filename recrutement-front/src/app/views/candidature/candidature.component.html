@@ -1,0 +1,67 @@
+<app-layout>
+
+
+  <section class="section-hero overlay inner-page bg-image" header
+           id="home-section" style="background-image: url('assets/images/hero_1.jpg');">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7">
+          <h1 class="text-white font-weight-bold">Candidatures</h1>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div body class="col-12">
+
+    <p-table [value]="candidatures">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Publiée</th>
+          <th>Titre</th>
+          <th *ngxPermissionsOnly="['ROLE_SOCIETE']">Candidat</th>
+          <th>Date candidature</th>
+          <th>Etat</th>
+          <th>Date Entretien</th>
+
+          <th width="12%">Action</th>
+
+        </tr>
+      </ng-template>
+      <ng-template let-row pTemplate="body">
+        <tr>
+          <td>{{row?.offre?.dateCreation | date: 'dd/MM/yyyy'}}</td>
+          <td>{{row?.offre?.titre}}</td>
+          <td *ngxPermissionsOnly="['ROLE_SOCIETE']">{{row?.cv?.candidat?.nom}} {{row?.cv?.candidat?.prenom}}</td>
+          <td>{{row.dateCandidature| date: 'dd/MM/yyyy'}}</td>
+          <td>{{row.etat}}</td>
+          <td>{{row.dateEntretien | date: 'dd/MM/yyyy HH:mm'}}</td>
+
+
+          <td>
+
+            <button class="p-button-rounded p-button-secondary p-button-outlined"
+                    icon="pi pi-eye" pButton pRipple
+                    pTooltip="Détails"
+                    routerLink="/offre/detail/{{row.offre.id}}"
+                    tooltipPosition="top"
+                    type="button"></button>
+
+            <button class="p-button-rounded p-button-warning p-button-outlined" icon="pi pi-pencil" pButton pRipple
+                    pTooltip="Editer"
+                    routerLink="edit/{{row.id}}"
+                    tooltipPosition="top"
+                    type="button"></button>
+
+
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+
+  </div>
+
+
+</app-layout>
