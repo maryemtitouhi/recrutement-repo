@@ -16,11 +16,14 @@ export class CvService {
   }
 
   public getByCandidat(id: number): Observable<Cv> {
-    return this.httpClient.get<Cv>(this.url + '/' + id);
+    return this.httpClient.get<Cv>(this.url + '/candidat/' + id);
   }
 
   public save(cv: Cv): Observable<any> {
     return this.httpClient.post(this.url, cv);
   }
 
+  getById(cvId: any): Observable<Cv> {
+    return this.httpClient.get<Cv>(this.url + '/' + cvId);
+  }
 }

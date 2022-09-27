@@ -49,7 +49,6 @@ export class DocumentComponent implements OnInit {
   }
 
 
-
   selectImage(event: any) {
     const file = event.target.files[0];
     this.imageName = file.name;
@@ -66,7 +65,6 @@ export class DocumentComponent implements OnInit {
       console.log(ex);
     });
   }
-
 
 
   selectLettre(event: any) {
@@ -91,11 +89,9 @@ export class DocumentComponent implements OnInit {
       data.forEach(el => {
         if (el.typeDocument === 'CV') {
           this.cvDoc = el;
-        }
-       else if (el.typeDocument === 'LETTRE_MOTIVATION') {
+        } else if (el.typeDocument === 'LETTRE_MOTIVATION') {
           this.lettreDoc = el;
-        }
-        else if (el.typeDocument === 'IMAGE') {
+        } else if (el.typeDocument === 'IMAGE') {
           this.imageDoc = el;
         }
       });
@@ -114,6 +110,7 @@ export class DocumentComponent implements OnInit {
     const file = new Blob([arrayBuffer], {type: this.lettreDoc.contentType});
     FileSaver.saveAs(file, this.lettreDoc.libelle);
   }
+
   downloadImage() {
     const arrayBuffer = base64ToArrayBuffer(this.imageDoc.fichier);
     const file = new Blob([arrayBuffer], {type: this.imageDoc.contentType});

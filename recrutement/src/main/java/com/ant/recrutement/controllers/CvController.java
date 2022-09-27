@@ -15,11 +15,15 @@ public class CvController {
     private CvService cvService;
 
 
+    @GetMapping("/candidat/{id}")
+    public Cv findByCandidat(@PathVariable Integer id) {
+        return  cvService.findByCandidat(id);
+    }
+
     @GetMapping("/{id}")
     public Cv findById(@PathVariable Integer id) {
         return  cvService.findById(id);
     }
-
     @PostMapping
     public MessageResponse save(@RequestBody Cv cv) {
         return  cvService.save(cv);

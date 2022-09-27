@@ -8,7 +8,10 @@
     <div class="container">
       <div class="row">
         <div class="col-md-7">
-          <h1 class="text-white font-weight-bold">Mon CV</h1>
+          <h1 class="text-white font-weight-bold">
+            <span *ngxPermissionsOnly="['ROLE_CANDIDAT']">Mon CV</span>
+            <span *ngxPermissionsOnly="['ROLE_SOCIETE']">CV Candidat</span>
+          </h1>
 
         </div>
       </div>
@@ -85,8 +88,6 @@
                       <div class="progress-bar-title text-white">{{centre?.libelle}}</div>
 
                   </div>
-
-
 
                 </div>
 
@@ -171,9 +172,71 @@
       </div>
     </div>
 
+
+    <div class="row mt-3" style="margin-left: 150px">
+      <div class="col-6">
+      <button class="btn btn-primary mr-1" type="button" [disabled]="!cvDoc"
+              (click)="downloadCV()">
+        <i class="fa fa-download"></i>
+        Télécharger CV
+      </button>
+
+
+      <button class="btn btn-secondary" type="button" [disabled]="!lettreDoc"
+              (click)="downloadLettre()">
+        <i class="fa fa-download"></i>
+        Télécharger lettre de motivation
+      </button>
+      </div>
+
+      <div class="col-6" *ngxPermissionsOnly="['ROLE_SOCIETE']">
+        <button [disabled]="disabled" (click)="clickAccept()"
+                class="btn btn-success ml-1 float-right" type="button">
+          <i class="fa fa-check"></i>
+          Accepter
+        </button>
+
+        <button [disabled]="disabled" class="btn btn-danger float-right" type="button" (click)="rejeter()">
+          <i class="fa fa-times"></i>
+          Rejeter
+        </button>
+      </div>
+
+    </div>
+
   </div>
 
 
 </app-layout>
 
 
+<p-dialog header="Entretien" [(visible)]="display" [breakpoints]="{'960px': '75vw'}"
+          [style]="{width: '50vw'}"
+          [baseZIndex]="10000"
+          [modal]="true" [draggable]="false" [resizable]="false">
+
+
+
+  <div class="form-group">
+    <label>Date entretien</label>
+    <input type="datetime-local" class="form-control"
+           [min]="minDate"
+           [(ngModel)]="dateEntretien" #debut="ngModel" required>
+  </div>
+
+
+
+
+
+
+
+
+  <ng-template pTemplate="footer">
+    <button pButton pRipple (click)="display=false" label="Annuler" class="p-button-outlined p-button-danger"></button>
+    <button  pButton label="Accepter" class="p-button-info"
+            [disabled]="debut.invalid || disabled"
+            (click)="accepter()"></button>
+
+
+  </ng-template>
+</p-dialog>

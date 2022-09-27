@@ -25,4 +25,17 @@ export class CandidatureService {
   public postuler(candidatId: any, offreId: any): Observable<any> {
     return this.httpClient.get(this.url + '/postule/' + candidatId + '/' + offreId);
   }
+
+  public rejeter(cvId: any, offreId: any): Observable<any> {
+    return this.httpClient.get(this.url + '/reject/' + cvId + '/' + offreId);
+  }
+
+  public accepter(cvId: any, offreId: any, date: any): Observable<any> {
+    return this.httpClient.get(this.url + '/accept/' + cvId + '/' + offreId + '/' + date);
+  }
+
+  getById(cvId: any, offreId: any): Observable<Candidature> {
+    return this.httpClient.get<Candidature>(this.url + '/' + cvId + '/' + offreId);
+
+  }
 }

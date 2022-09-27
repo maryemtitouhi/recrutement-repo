@@ -23,11 +23,14 @@ public class CvService {
 
 
 
-    public Cv findById(Integer id) {
+    public Cv findByCandidat(Integer id) {
         Candidat candidat = new Candidat();
         candidat.setId(id);
         return  this.cvRepository.findByCandidat(candidat);
     }
 
 
+    public Cv findById(Integer id) {
+        return cvRepository.findById(id).orElse(null);
+    }
 }

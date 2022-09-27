@@ -68,6 +68,7 @@ import {CheckboxModule} from 'primeng-lts/checkbox';
 import { OffreDetailComponent } from './views/offre/offre-detail/offre-detail.component';
 import localeFr from '@angular/common/locales/fr';
 import { CandidatureComponent } from './views/candidature/candidature.component';
+import { MeetingComponent } from './views/meeting/meeting.component';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -140,6 +141,7 @@ registerLocaleData(localeFr, 'fr');
        AddEditOffreComponent,
        OffreDetailComponent,
        CandidatureComponent,
+       MeetingComponent,
 
   ],
   providers: [
