@@ -14,6 +14,7 @@ public class Offre {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String titre;
+    @Lob
     private String description;
     private String disponibiite;
     private String niveauEtude;
@@ -22,6 +23,9 @@ public class Offre {
     private Date dateCreation;
     @Temporal(TemporalType.DATE)
     private Date dateExpiration;
+
+    private String salaire;
+
     private boolean etat;
 
     @Lob

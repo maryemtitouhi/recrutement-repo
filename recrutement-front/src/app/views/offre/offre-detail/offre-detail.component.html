@@ -79,7 +79,8 @@
           <ul class="list-unstyled pl-3 mb-0">
             <li class="mb-2"><strong class="text-black">Publée le:</strong> {{offre.dateCreation | date: 'dd MMMM yyyy'}}</li>
             <li class="mb-2"><strong class="text-black">Lieu de travail:</strong> {{offre?.societe?.ville?.pays?.libelle}} , {{offre?.societe?.ville?.libelle}} </li>
-            <li class="mb-2"><strong class="text-black">Employment Status:</strong> Full-time</li>
+            <li class="mb-2"><strong class="text-black">Disponibilité:</strong> {{offre.disponibiite}}</li>
+            <li class="mb-2"><strong class="text-black">Salaire:</strong> {{offre.salaire}}</li>
             <li class="mb-2"><strong class="text-black">Experience:</strong> {{offre.niveauExperience}}</li>
             <li class="mb-2"><strong class="text-black">Niveau d'étude:</strong> {{offre.niveauEtude}}</li>
 

@@ -12,6 +12,7 @@ export class Offre {
   niveauExperience: string;
   dateCreation: Date;
   dateExpiration: Date;
+  salaire: string;
   etat: boolean;
   societe: Societe;
   image: any;

@@ -86,27 +86,48 @@ public class OffreService {
                     predicates.add(criteriaBuilder.equal(root.get("disponibiite"), searchRequest.getDisponibilite()));
                 }
 
+                if ( searchRequest.getNiveauEtude() != null && !searchRequest.getNiveauEtude().isEmpty()) {
+                    predicates.add(criteriaBuilder.equal(root.get("niveauEtude"), searchRequest.getNiveauEtude()));
+                }
+                if ( searchRequest.getNiveauExperience() != null && !searchRequest.getNiveauExperience().isEmpty()) {
+                    predicates.add(criteriaBuilder.equal(root.get("niveauExperience"), searchRequest.getNiveauExperience()));
+                }
                 if (searchRequest.getPays()!= null) {
                     Predicate pred1 = criteriaBuilder.equal(root.get("societe").get("ville").get("pays"), searchRequest.getPays());
 
                     predicates.add(pred1);
                 }
 
+
+                if (searchRequest.getTypePostes()!= null && !searchRequest.getTypePostes().isEmpty()) {
+                //    Predicate predicate=  criteriaBuilder.equal();
+                    Predicate predicate = criteriaBuilder.in(root.join("typePostes")).value(searchRequest.getTypePostes());
+                    predicates.add(predicate);
+                }
+
+
+                if (searchRequest.getSpecialites()!= null && !searchRequest.getSpecialites().isEmpty()) {
+                    //    Predicate predicate=  criteriaBuilder.equal();
+                    Predicate predicate = criteriaBuilder.in(root.join("specialites")).value(searchRequest.getSpecialites());
+                    predicates.add(predicate);
+                }
+
+
                 if ( searchRequest.getKeyword() != null && !searchRequest.getKeyword().isEmpty()) {
                     //predicates.add(criteriaBuilder.equal(root.get("disponibiite"), searchRequest.getDisponibilite()));
 
                   Predicate predicate1=  criteriaBuilder.like((root.get("titre")), "%" + searchRequest.getKeyword()+ "%");
                   Predicate predicate2=  criteriaBuilder.like((root.get("societe").get("raisonSocial")), "%" + searchRequest.getKeyword()+ "%");
-                  Predicate predicate3=  criteriaBuilder.in(root.join("specialites").get("libelle")).value(searchRequest.getKeyword());
+                 // Predicate predicate3=  criteriaBuilder.in(root.join("specialites").get("libelle")).value(searchRequest.getKeyword());
 
-                 predicates.add( criteriaBuilder.or(predicate1, predicate2 ,predicate3));
+                 predicates.add( criteriaBuilder.or(predicate1, predicate2));
 
                 }
 
 
                 predicates.add(criteriaBuilder.equal(root.get("etat"), true));
                 predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get("dateExpiration"), new Date()));
-
+                query.distinct(true);
                 return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
             }
         };

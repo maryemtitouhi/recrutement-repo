@@ -104,7 +104,7 @@ registerLocaleData(localeFr, 'fr');
     TabViewModule,
     RatingModule,
     AccordionModule,
-    CheckboxModule,
+    CheckboxModule
   ],
   declarations: [
     AppComponent,
