@@ -37,7 +37,10 @@ export class MeetingComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.candidatureService.getById(this.cvId, this.offreId).subscribe(res => {
+      console.log(res)
+
       const room = res.offre.titre + '-' + this.cvId + '-' + this.offreId;
+      console.log(room)
       this.room = room; // Set your room name
       let username;
       const currentUser = JSON.parse(localStorage.getItem('currentUser'));
