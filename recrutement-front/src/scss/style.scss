@@ -9,3 +9,24 @@
 .p-checkbox {
   margin-bottom: 7px !important;
 }
+
+.p-scrollpanel {
+
+
+  &.custombar1 {
+    .p-scrollpanel-wrapper {
+      border-right: 9px solid var(--layer-1) !important;
+    }
+
+    .p-scrollpanel-bar {
+      background-color: gray !important;
+      opacity: 1  !important;
+      transition: background-color .2s  !important;
+
+      &:hover {
+        background-color: gray !important;
+      }
+    }
+  }
+
+}

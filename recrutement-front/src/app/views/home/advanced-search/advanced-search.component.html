@@ -1,0 +1,179 @@
+<app-layout>
+
+
+  <section class="section-hero overlay inner-page bg-image" header
+           id="home-section" style="background-image: url('assets/images/hero_1.jpg');">
+    <div class="container">
+
+      <div class="row align-items-center justify-content-center">
+        <div class="col-md-12">
+          <div class="mb-5">
+            <h1 class="text-white font-weight-bold">Le moyen le plus simple d'obtenir l'emploi de vos rêves</h1>
+            <p></p>
+          </div>
+
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <div body class="col-lg-12">
+
+    <div class="search-jobs-form">
+      <div class="row mb-5">
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+          <label>Mot clé</label>
+          <input [(ngModel)]="searchRequest.keyword" class="form-control form-control-lg"
+                 placeholder="Titre, Société"
+                 type="text">
+        </div>
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+          <label>Pays</label>
+          <select [(ngModel)]="searchRequest.pays"
+                  class="form-control form-control-lg"
+
+                  data-live-search="true" data-width="100%">
+            <option [ngValue]="null">Tous</option>
+            <option *ngFor="let pay of pays" [ngValue]="pay">{{pay.libelle}}</option>
+
+          </select>
+        </div>
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+          <label>Disponibilté</label>
+          <select [(ngModel)]="searchRequest.disponibilite" class="form-control form-control-lg">
+            <option value="">Tous</option>
+            <option value="Plein temps">Plein temps</option>
+            <option value="Temps partiel">Temps partiel</option>
+          </select>
+        </div>
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
+          <button (click)="chercher()" style="margin-top: 29px;"
+                  class="btn btn-primary btn-lg btn-block text-white btn-search"><span
+            class="icon-search icon mr-2"></span>Chercher
+          </button>
+
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0 ">
+          <label>Poste</label>
+
+          <!--          <p-multiSelect  [(ngModel)]="searchRequest.typePostes"-->
+          <!--                          [options]="typePostes" [style]="{width: '255px'}"-->
+          <!--                          defaultLabel="Choisir type poste"-->
+          <!--                          optionLabel="libelle"></p-multiSelect>-->
+          <p-scrollPanel [style]="{height: '100px'}" styleClass="custombar1">
+          <div *ngFor="let typePoste of typePostes" class="p-field-checkbox">
+            <p-checkbox [(ngModel)]="searchRequest.typePostes" [inputId]="typePoste.libelle" [value]="typePoste" name="group2"
+                        value="typePoste"></p-checkbox>
+            <label [for]="typePoste.libelle">{{typePoste.libelle}}</label>
+          </div>
+          </p-scrollPanel>
+        </div>
+
+
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+          <label>Spécialité</label>
+
+<!--          <p-multiSelect [(ngModel)]="searchRequest.specialites" [options]="specialites" [style]="{width: '255px'}"-->
+<!--                         autoZIndex="false" baseZIndex="2000"-->
+<!--                         defaultLabel="Choisir spécialités"-->
+<!--                         optionLabel="libelle"></p-multiSelect>-->
+
+          <p-scrollPanel [style]="{height: '100px'}" styleClass="custombar1">
+          <div *ngFor="let specialite of specialites" class="p-field-checkbox">
+            <p-checkbox [(ngModel)]="searchRequest.specialites" [inputId]="specialite.libelle" [value]="specialite" name="group3"
+                        value="specialite"></p-checkbox>
+            <label [for]="specialite.libelle">{{specialite.libelle}}</label>
+          </div>
+          </p-scrollPanel>
+        </div>
+
+
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+          <label>Niveau d'étude</label>
+          <select [(ngModel)]="searchRequest.niveauEtude"
+                  class="form-control form-control-lg" name="niveauEtude">
+            <option value="">Choisir niveau d'étude</option>
+            <option value="Bac">Bac</option>
+            <option value="Bac+1">Bac+1</option>
+            <option value="Bac+2">Bac+2</option>
+            <option value="Bac+3">Bac+3</option>
+            <option value="Bac+4">Bac+4</option>
+            <option value="Bac+5">Bac+5</option>
+            <option value="Doctorat">Doctorat</option>
+            <option value="Expert">Expert</option>
+          </select>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+          <label>Niveau d'éxperience</label>
+          <select [(ngModel)]="searchRequest.niveauExperience"
+                  class="form-control form-control-lg" name="niveauExperience"
+                  required>
+            <option value="">Choisir niveau d'éxperience</option>
+            <option value="Aucune éxperience">Aucune éxperience</option>
+            <option value="Moins d'un an">Moins d'un an</option>
+            <option value="Entre 1 et 2 ans">Entre 1 et 2 ans</option>
+            <option value="Entre 2 et 5 ans">Entre 2 et 5 ans</option>
+            <option value="Entre 5 et 10 ans">Entre 5 et 10 ans</option>
+            <option value="Plus que 10 ans">Plus que 10 ans</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+
+    <section *ngIf="display" class="site-section">
+      <div class="container">
+
+        <div class="row mb-5 justify-content-center">
+          <div class="col-md-7 text-center">
+            <h2 class="section-title mb-2">{{offres.length}} offre disponibles</h2>
+          </div>
+        </div>
+
+        <ul class="job-listings mb-5">
+          <li *ngFor="let offre of offres"
+              class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
+            <a routerLink="/offre/detail/{{offre.id}}"></a>
+            <div class="job-listing-logo">
+              <img [src]="offre.societe.logo? 'data:image/png;base64,'+offre.societe.logo : '/assets/images/empty.png'"
+                   alt="Free Website Template by Free-Template.co"
+                   class="img-fluid" style="width: 150px; height: 150px">
+            </div>
+
+            <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
+              <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
+                <h2>{{offre.titre}}</h2>
+                <strong>{{offre.societe.raisonSocial}}</strong>
+              </div>
+              <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
+                <span class="icon-room"></span> {{offre?.societe?.ville?.pays?.libelle}}
+                , {{offre?.societe?.ville?.libelle}}
+              </div>
+              <div class="job-listing-meta">
+                <span
+                  class="badge {{offre.disponibiite === 'Plein temps'? 'badge-success': 'badge-danger'}}">{{offre.disponibiite}}</span>
+              </div>
+            </div>
+
+          </li>
+
+
+        </ul>
+
+
+      </div>
+    </section>
+
+
+  </div>
+
+
+</app-layout>

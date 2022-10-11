@@ -42,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
        http.csrf().disable();
        http.cors();
        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-       http.authorizeRequests().antMatchers("/register/**", "/login", "/offre/**", "/stat/**").permitAll();
+       http.authorizeRequests().antMatchers("/register/**", "/login", "/offre/**", "/stat/**", "/typePoste", "/specialite").permitAll();
        http.authorizeRequests().antMatchers(HttpMethod.GET, "/pays", "/ville/pays/**").permitAll();
        http.authorizeRequests().anyRequest().authenticated();
        http.addFilterAfter(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);

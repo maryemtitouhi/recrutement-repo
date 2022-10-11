@@ -69,6 +69,8 @@ import { OffreDetailComponent } from './views/offre/offre-detail/offre-detail.co
 import localeFr from '@angular/common/locales/fr';
 import { CandidatureComponent } from './views/candidature/candidature.component';
 import { MeetingComponent } from './views/meeting/meeting.component';
+import { AdvancedSearchComponent } from './views/home/advanced-search/advanced-search.component';
+import {ScrollPanelModule} from 'primeng-lts/scrollpanel';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -104,7 +106,8 @@ registerLocaleData(localeFr, 'fr');
     TabViewModule,
     RatingModule,
     AccordionModule,
-    CheckboxModule
+    CheckboxModule,
+    ScrollPanelModule
   ],
   declarations: [
     AppComponent,
@@ -142,6 +145,7 @@ registerLocaleData(localeFr, 'fr');
        OffreDetailComponent,
        CandidatureComponent,
        MeetingComponent,
+       AdvancedSearchComponent,
 
   ],
   providers: [

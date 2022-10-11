@@ -27,6 +27,7 @@ import {AddEditOffreComponent} from './views/offre/add-edit-offre/add-edit-offre
 import {OffreDetailComponent} from './views/offre/offre-detail/offre-detail.component';
 import {CandidatureComponent} from './views/candidature/candidature.component';
 import {MeetingComponent} from './views/meeting/meeting.component';
+import {AdvancedSearchComponent} from './views/home/advanced-search/advanced-search.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -42,6 +43,7 @@ export const routes: Routes = [
   {path: 'candidature', component: CandidatureComponent , canActivate: [AuthGuard]},
   {path: 'offre/candidature/:id', component: CandidatureComponent , canActivate: [AuthGuard]},
   {path: 'offre/detail/:id', component: OffreDetailComponent },
+  {path: 'advancedSearch', component: AdvancedSearchComponent},
   {path: 'offre/candidature/meeting/:cvId/:offreId', component: MeetingComponent, canActivate: [AuthGuard] },
   {
     path: 'login',

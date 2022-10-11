@@ -39,8 +39,8 @@
                 <button (click)="chercher()" class="btn btn-primary btn-lg btn-block text-white btn-search"><span
                   class="icon-search icon mr-2"></span>Chercher
                 </button>
-                <a (click)="clickAdvancedSearch()"
-                   class="btn btn-link text-white float-right">{{advancedSearch ? 'Recherche simple' : 'Recherche avancée'}}</a>
+                <a routerLink="/advancedSearch"
+                   class="btn btn-link text-white float-right">Recherche avancée</a>
               </div>
             </div>
 
