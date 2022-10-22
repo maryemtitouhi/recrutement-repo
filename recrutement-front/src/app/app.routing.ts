@@ -28,10 +28,14 @@ import {OffreDetailComponent} from './views/offre/offre-detail/offre-detail.comp
 import {CandidatureComponent} from './views/candidature/candidature.component';
 import {MeetingComponent} from './views/meeting/meeting.component';
 import {AdvancedSearchComponent} from './views/home/advanced-search/advanced-search.component';
+import {AboutComponent} from './views/about/about.component';
+import {StatistiqueComponent} from './views/statistique/statistique.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
+  {path: 'about', component: AboutComponent},
+  {path: 'statistique', component: StatistiqueComponent},
   {path: 'change-password', component: ChangePasswordCandidatSocieteComponent, canActivate: [AuthGuard]},
   {path: 'user/profil', component: ProfilComponent , canActivate: [AuthGuard]},
   {path: 'cv', component: CvComponent , canActivate: [AuthGuard]},

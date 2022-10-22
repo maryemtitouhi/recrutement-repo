@@ -71,6 +71,9 @@ import { CandidatureComponent } from './views/candidature/candidature.component'
 import { MeetingComponent } from './views/meeting/meeting.component';
 import { AdvancedSearchComponent } from './views/home/advanced-search/advanced-search.component';
 import {ScrollPanelModule} from 'primeng-lts/scrollpanel';
+import { AboutComponent } from './views/about/about.component';
+import { StatistiqueComponent } from './views/statistique/statistique.component';
+import {ChartModule} from 'primeng-lts/chart';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -107,7 +110,8 @@ registerLocaleData(localeFr, 'fr');
     RatingModule,
     AccordionModule,
     CheckboxModule,
-    ScrollPanelModule
+    ScrollPanelModule,
+    ChartModule
   ],
   declarations: [
     AppComponent,
@@ -146,6 +150,8 @@ registerLocaleData(localeFr, 'fr');
        CandidatureComponent,
        MeetingComponent,
        AdvancedSearchComponent,
+       AboutComponent,
+       StatistiqueComponent,
 
   ],
   providers: [

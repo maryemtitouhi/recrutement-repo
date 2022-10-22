@@ -28,7 +28,7 @@ public class RecrutementApplication  implements CommandLineRunner {
         admin.setPassword(passwordEncoder.encode("123"));
         admin.setEnabled(true);
 
-        // adminRepository.save(admin);
+       //  adminRepository.save(admin);
 
     }
 }

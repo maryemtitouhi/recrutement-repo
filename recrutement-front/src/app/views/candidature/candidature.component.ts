@@ -6,13 +6,10 @@ import {JwtHelperService} from '@auth0/angular-jwt';
 import {NgxPermissionsService} from 'ngx-permissions';
 
 @Component({
-  selector: 'app-candidature',
-  templateUrl: './candidature.component.html',
-  styleUrls: ['./candidature.component.scss']
+  selector: 'app-candidature', templateUrl: './candidature.component.html', styleUrls: ['./candidature.component.scss']
 })
 export class CandidatureComponent implements OnInit {
   candidatures: Candidature[];
-  candidatureId: any;
 
   constructor(private candidatureService: CandidatureService,
               private permissionService: NgxPermissionsService,
@@ -48,4 +45,10 @@ export class CandidatureComponent implements OnInit {
     }, ex => console.log(ex));
   }
 
+  compareDate(dateEntretien: Date) {
+    if (new Date(dateEntretien) > new Date()) {
+      return true;
+    }
+    return false;
+  }
 }

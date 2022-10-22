@@ -21,6 +21,7 @@
           <th>Publiée</th>
           <th>Titre</th>
           <th *ngxPermissionsOnly="['ROLE_SOCIETE']">Candidat</th>
+          <th *ngxPermissionsOnly="['ROLE_CANDIDAT']">Société</th>
           <th>Date candidature</th>
           <th>Etat</th>
           <th>Date Entretien</th>
@@ -34,6 +35,7 @@
           <td>{{row?.offre?.dateCreation | date: 'dd/MM/yyyy'}}</td>
           <td>{{row?.offre?.titre}}</td>
           <td *ngxPermissionsOnly="['ROLE_SOCIETE']">{{row?.cv?.candidat?.nom}} {{row?.cv?.candidat?.prenom}}</td>
+          <td *ngxPermissionsOnly="['ROLE_CANDIDAT']">{{row?.offre?.societe?.raisonSocial}}</td>
           <td>{{row.dateCandidature| date: 'dd/MM/yyyy'}}</td>
           <td>{{row.etat}}</td>
           <td>{{row.dateEntretien | date: 'dd/MM/yyyy HH:mm'}}</td>
@@ -56,7 +58,7 @@
 
 
             <button class="p-button-rounded p-button-success p-button-outlined"
-                    icon="pi pi-video" pButton pRipple [disabled]="row.etat !== 'Acceptée'"
+                    icon="pi pi-video" pButton pRipple [disabled]="row.etat !== 'Acceptée' || ( row.etat === 'Acceptée' && compareDate(row?.dateEntretien))"
                     pTooltip="Meeting"
                     routerLink="/offre/candidature/meeting/{{row.id.cvId}}/{{row.id.offreId}}"
                     tooltipPosition="top"

@@ -1,7 +1,10 @@
 package com.ant.recrutement.entities;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -16,4 +19,8 @@ public class Societe  extends User{
     @Lob
     private byte [] logo;
 
+
+    @OneToMany(mappedBy = "societe")
+    @JsonIgnore
+    private List<Offre> offres;
 }

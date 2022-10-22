@@ -16,4 +16,12 @@ export class StatService {
   public count(): Observable<any> {
     return  this.httpClient.get(this.url + '/home');
   }
+
+  public topCompany(): Observable<any> {
+    return  this.httpClient.get(this.url + '/topCompany');
+  }
+
+  public topCandidature(): Observable<any> {
+    return  this.httpClient.get(this.url + '/topCandidature');
+  }
 }

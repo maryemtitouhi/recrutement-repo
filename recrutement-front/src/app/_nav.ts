@@ -26,7 +26,7 @@ export const navItems: any[] = [
   {
     name: 'Spécialités',
    url: '/admin/settings/specialite',
-    icon: 'icon-star',
+    icon: 'fa fa-star',
     roles: ['ROLE_ADMIN']
   },
   {
@@ -38,7 +38,7 @@ export const navItems: any[] = [
   {
     name: 'Pays et villes',
    url: '/admin/settings/pays',
-    icon: 'icon-flag',
+    icon: 'fa fa-flag',
     roles: ['ROLE_ADMIN']
   },
   {
