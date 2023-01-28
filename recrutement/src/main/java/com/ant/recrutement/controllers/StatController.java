@@ -32,4 +32,10 @@ public class StatController {
     public ChartResponse topCandidature() {
         return statService.top5CandidatureByCompany();
     }
+
+
+    @GetMapping("/offreCandidatureByMonth")
+    public ChartResponse offreCandidatureByMonth() {
+        return statService.offreCandidatureByMonth();
+    }
 }

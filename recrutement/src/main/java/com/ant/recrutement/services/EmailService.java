@@ -16,10 +16,11 @@ public class EmailService {
                 = new SimpleMailMessage();
 
         // Setting up necessary details
-        mailMessage.setFrom("no.replay@ant-technology.com");
+        mailMessage.setFrom("mouradbounasri@gmail.com");
         mailMessage.setTo(to);
         mailMessage.setText(text);
         mailMessage.setSubject(subject);
         javaMailSender.send(mailMessage);
     }
+
 }

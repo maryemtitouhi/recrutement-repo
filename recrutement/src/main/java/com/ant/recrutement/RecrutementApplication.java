@@ -2,6 +2,7 @@ package com.ant.recrutement;
 
 import com.ant.recrutement.entities.Admin;
 import com.ant.recrutement.repositories.AdminRepository;
+import com.ant.recrutement.services.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -15,6 +16,8 @@ public class RecrutementApplication  implements CommandLineRunner {
     private AdminRepository adminRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+@Autowired
+    EmailService emailService;
 
     public static void main(String[] args) {
         SpringApplication.run(RecrutementApplication.class, args);
@@ -30,5 +33,6 @@ public class RecrutementApplication  implements CommandLineRunner {
 
        //  adminRepository.save(admin);
 
+      //  emailService.sendEmail("mouradbounasri@gmail.com", "test matryem", "hello hello hello hello");
     }
 }

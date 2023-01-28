@@ -23,5 +23,7 @@ public interface OffreRepository extends JpaRepository<Offre, Integer> {
     List<Offre> findAll(Specification<Offre> specification);
     @Query("select s from  Offre  s group by s.societe order by  s.candidatures.size desc")
     Page<Offre> findTop5Company(Pageable pageable);
+    @Query("select count(o) from Offre  o where month (o.dateCreation)=:month and year (o.dateCreation)= year (current_date) ")
+    long countByMonth(int month);
 
 }

@@ -76,4 +76,45 @@ public class StatService {
         return chartResponse;
     }
 
+    public ChartResponse offreCandidatureByMonth() {
+        ChartResponse chartResponse = new ChartResponse();
+
+
+
+        List<String> labels= new ArrayList<>();
+        labels.add("Janvier");
+        labels.add("Féverier");
+        labels.add("Mars");
+        labels.add("Avril");
+        labels.add("Mai");
+        labels.add("Juin");
+        labels.add("Juillet");
+        labels.add("Aout");
+        labels.add("Septembre");
+        labels.add("Octobre");
+        labels.add("Nouvembre");
+        labels.add("Décembre");
+        List<Number> values= new ArrayList<>();
+        List<Number> values2= new ArrayList<>();
+        List<Number> values3= new ArrayList<>();
+        List<Number> values4= new ArrayList<>();
+        List<Number> values5= new ArrayList<>();
+
+        for (int i =1; i<= 12; i++) {
+             values.add(offreRepository.countByMonth(i));
+            values2.add(candidatureRepository.countByMonth(i));
+            values3.add(candidatureRepository.countEtatByMonth(i, "En attente"));
+            values4.add(candidatureRepository.countEtatByMonth(i, "Acceptée"));
+            values5.add(candidatureRepository.countEtatByMonth(i, "Rejetée"));
+        }
+
+        chartResponse.setLabels(labels);
+        chartResponse.setValues(values);
+        chartResponse.setValues2(values2);
+        chartResponse.setValues3(values3);
+        chartResponse.setValues4(values4);
+        chartResponse.setValues5(values5);
+        return chartResponse;
+    }
+
 }

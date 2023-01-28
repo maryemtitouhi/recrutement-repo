@@ -24,4 +24,8 @@ export class StatService {
   public topCandidature(): Observable<any> {
     return  this.httpClient.get(this.url + '/topCandidature');
   }
+
+  public offreCandidatureByMonth(): Observable<any> {
+    return  this.httpClient.get(this.url + '/offreCandidatureByMonth');
+  }
 }
